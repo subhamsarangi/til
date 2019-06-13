@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <h1>Register</h1>
+  {% if form.errors %}
+  {{form.errors}}
+  <p>Please try again.</p>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="Submit">Sign Up</button>
+  </form>
+</div>
+{% endblock %}
+{%block loadjs%}
+{%endblock loadjs%}

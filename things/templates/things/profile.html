@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{% block title %}Home | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Profile Page" />
+    <meta name="twitter:title" content="Profile Page" />
+    <meta name="description" content="Profile Page"/>
+    <meta name="twitter:description" content="Profile Page" />
+    <meta property="og:description" content="Profile Page" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/profile/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/profile/" />
+    <meta name="keywords" content="" />
+{%endblock%}
+
+{%block content%}
+<div id="things_heading" class="col-xs-12">
+	<h1>{{request.user}}</h1>
+</div>
+
+<div class="col-xs-12">
+        <h2>Actors</h2>
+        {% for obj in actor_list %}
+        <a class="actor_link" href={{obj.get_absolute_url}}>
+            <div class="col-xs-12 col-sm-6 actor_card_wrapper">
+                <div class="actor_card">
+                    <div class="col-xs-12">
+                        <h2>{{obj.name}}</h2>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {%endfor%}
+</div>
+
+{%endblock content%}

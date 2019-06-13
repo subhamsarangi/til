@@ -1,0 +1,25 @@
+{%extends "base.html"%}
+{% block title %}{{ formtitle | safe }} | {{block.super}}
+{% endblock %}
+
+{%block loadcss%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />  
+{%endblock loadcss%}
+
+{%block content%}
+<h3>{{ formtitle | safe }}</h3>
+<h3>Form</h3>
+<p>{{ form.errors }}</p>
+<form class="form-horizontal" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="col-xs-12">
+    <button class="btn btn-success" type="Submit">
+      {{ formbutton | safe }}
+    </button>
+  </div>
+</form>
+{%endblock content%}
+{%block loadjs%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+{%endblock loadjs%}

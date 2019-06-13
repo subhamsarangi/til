@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <h1>Welcome Back to LikeList</h1>
+  {% if form.errors %}
+  {{form.errors}}
+    <p>Password/Username doesn't match.</p>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="Submit">Login</button>
+  </form>
+</div>
+{% endblock %}
