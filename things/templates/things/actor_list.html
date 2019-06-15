@@ -19,15 +19,15 @@
 
 {% for obj in object_list %}
 <a class="generic_card_link" href={{obj.get_absolute_url}}>
-    <div class="col-xs-12 col-sm-6 actor_card_wrapper">
-        <div class="generic_card" style="height: 230px;overflow: hidden;border:1px solid #222;">
-            <div class="generic_cardd_text col-xs-8">
+    <div class="col-xs-12 col-sm-6 generic_card_wrapper">
+        <div class="generic_card">
+            <div class="generic_card_text col-xs-8">
                 <h2>{{obj.name}}</h2>
                 <p>{{obj.get_country_display}}</p>
                 <p>{{obj.get_gender_display}}</p>
             </div>
             <div class="generic_card_img col-xs-4">
-                <img src="{{obj.image.url}}" alt="{{obj.name}} image" width="100%" height="100%" style="object-fit: cover;object-position: bottom;">
+                <img src="{{obj.image.url}}" alt="{{obj.name}} image">
             </div>
         </div>
     </div>

@@ -7,10 +7,10 @@
   <p>Please try again.</p>
   {% endif %}
 
-  <form method="POST" enctype="multipart/form-data">
+  <form method="POST" enctype="multipart/form-data" class="col-xs-12 col-md-6">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="Submit">Sign Up</button>
+    <button type="Submit" class="btn btn-success">Sign Up</button>
   </form>
 </div>
 {% endblock %}
