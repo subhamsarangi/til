@@ -21,6 +21,34 @@ def register(request):
     args = {'form': form}
     return render(request, 'registration/register.html', args)
 
+class HomeView(View):
+    template_name='things/home.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated():
+            actor_list = Actor.objects.filter(~Q(owner=self.request.user))
+        else:
+            actor_list = Actor.objects.all().order_by('?')
+        context = {
+            'actor_list':actor_list,
+        }
+        return render(request, self.template_name, context)
+
+class ProfileView(View):
+    template_name='things/profile.html'
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated():
+            actor_list = Actor.objects.filter(owner=self.request.user)
+            context = {
+                'actor_list':actor_list,
+            }
+        else:
+            context= {}
+
+        return render(request, self.template_name, context)
+
+
 class ActorCreateView(LoginRequiredMixin, CreateView):
     form_class=ActorCreateForm
     template_name='things/form.html'

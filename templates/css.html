@@ -8,11 +8,18 @@
         transform: scale(.8);
     }
     .navbar-toggle {
-        background: linear-gradient(to left, #1f1f1f, #827eda)
+        background: linear-gradient(to left, #1f1f1f66, #5b589e61);
+        border-color: transparent;
+    }
+    .icon-bar{
+        background: #fff;
     }
     .nav>li>a:focus, .nav>li>a:hover, nav .open>a{
         text-decoration: none;
         background-color: #827eda!important;
+    }
+    .navbar-nav>li>a{
+        font-size: 1.4em;
     }
     .dropdown-menu {
         background-color: #4f505a;
@@ -88,31 +95,55 @@
     label{
         padding-bottom: 4px;
     }
-    #things_heading{
+    #generic_list_heading, #generic_heading{
         font-size: 3em; 
     }
     .generic_card_link{
 
     }
     .generic_card_wrapper{
-
+        margin: 1em 0;
+        padding: .4em;
     }
     .generic_card{
-        height: 230px;
+        height: 10.5em;
+        padding-left: .5em;
         overflow: hidden;
         border:1px solid rgb(115, 216, 247);
     }
     .generic_card_text{
-
+        display: flex;
+        flex-flow: column;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .generic_card_text h2{
+        font-size: 1.8em;
+    }
+    .generic_card_text h2 i{
+        margin-left: 5px;
+        margin-bottom: 1px;
     }
     .generic_card_img{
-
+        padding: 0;
+        height:100%;
     }
     .generic_card_img img{
         width:100%;
-        height:100%;
+        height: 100%;
         object-fit: cover;
-        object-position: bottom;
+        object-position: top;
+    }
+    .generic_card_info1, .generic_card_info2{
+        display: inline-block;
+        padding: 1px 4px;
+        border-radius: 5px;
+    }
+    .generic_card_info1{
+        border: 1px solid #fff;
+    }
+    .generic_card_info2{
+        background: rgba(111, 123, 233, 0.133);
     }
     .generic_edit{
         background: #ddd;
@@ -124,5 +155,8 @@
     }
     .subset_link{
 
+    }
+    .generic_creator{
+        color: #aaa;
     }
 </style>

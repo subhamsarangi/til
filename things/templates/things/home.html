@@ -1,20 +1,20 @@
 {%extends "base.html"%}
-{% block title %}{{request.user}} Profile Page| {{block.super}} {% endblock %}
+{% block title %}Home | {{block.super}} {% endblock %}
 
 {%block metatag%}
-    <meta property="og:title" content="Profile Page" />
-    <meta name="twitter:title" content="Profile Page" />
-    <meta name="description" content="Profile Page"/>
-    <meta name="twitter:description" content="Profile Page" />
-    <meta property="og:description" content="Profile Page" />
-    <meta property="og:url" content="likelist.pythonanywhere.com/profile/" />
-    <meta name="twitter:domain" content="likelist.pythonanywhere.com/profile/" />
+    <meta property="og:title" content="Home Page" />
+    <meta name="twitter:title" content="Home Page" />
+    <meta name="description" content="Home Page"/>
+    <meta name="twitter:description" content="Home Page" />
+    <meta property="og:description" content="Home Page" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/" />
     <meta name="keywords" content="" />
 {%endblock%}
 
 {%block content%}
 <div id="things_heading" class="col-xs-12">
-	<h1>{{request.user}}</h1>
+	<h1>What they like</h1>
 </div>
 
 <div class="col-xs-12">

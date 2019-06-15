@@ -9,8 +9,8 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
 
-    url(r'^$', views.ActorListView.as_view(), name='homepage'),
-    url(r'^profile/$', TemplateView.as_view(template_name='things/profile.html'), name='profile'),
+    url(r'^$', views.HomeView.as_view(), name='home'),
+    url(r'^profile/$', views.ProfileView.as_view(), name='profile'),
 
     url(r'^actors/$', views.ActorListView.as_view(), name='actors'),
     url(r'^add-actor/$', views.ActorCreateView.as_view(),name='new_actor'),

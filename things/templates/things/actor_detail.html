@@ -1,4 +1,5 @@
 {%extends "base.html"%}
+{%load static%}
 {% block title %}{{object.name}} | {{block.super}} {% endblock %}
 
 {%block metatag%}
@@ -9,20 +10,38 @@
     <meta property="og:description" content="{{object.remarks}}" />
     <meta property="og:url" content="{{object.get_absolute_url}}" />
     <meta name="twitter:domain" content="{{object.get_absolute_url}}" />
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
 {%endblock metatag%}
 
 {%block content%}
 <div class="col-xs-12">
-    <div id="things_heading">{{object.name}}</div>
-    {%if request.user == object.owner%}
-    <button class="generic_edit">
-        <a href='{% url "things:edit_actor" object.id object.slug %}'>Edit this page</a>
-    </button>
-    <button class="generic_edit">
-        <a href='{% url "things:del_actor" object.id object.slug %}'>Delete this page</a>
-    </button>
-    {%endif%}
-    <img src="{{object.image.url}}" alt="{{object.name}}" width="100%" height="500px" style="object-fit: cover;object-position: top;">
+    <div class="col-xs-12 col-md-5">
+        <div id="generic_heading">{{object.name}}</div>
+        <div id="generic_info">
+            <p class="generic_card_info2">{{object.get_gender_display}}</p>
+            <p class="generic_card_info1">{%if object.dob%}{{object.dob}}{%endif%}</p>
+            <p><i class="flag2x {{ object.country.flag_css }}"></i></p>
+            <p>{%if object.insta%}{{object.insta}}{%endif%}</p>
+        </div>
+        {%if request.user == object.owner%}
+        <div id="generic_buttons">
+            <button class="generic_edit">
+                <a href='{% url "things:edit_actor" object.id object.slug %}'>Edit this page</a>
+            </button>
+            <button class="generic_edit">
+                <a href='{% url "things:del_actor" object.id object.slug %}'>Delete this page</a>
+            </button>
+        </div>
+        {%else%}
+        <div class="generic_creator">
+            <h4>Created by {{object.owner}} at {{object.timestamp}}</h4>
+        </div>
+        {%endif%}
+    </div>
+
+    <div class="col-xs-12 col-md-7" id="generic_img">
+        <img src="{{object.image.url}}" alt="{{object.name}}" width="100%" height="500px" style="object-fit: cover;object-position: top;">
+    </div>
 </div>
 
 {%if object.movie_set.all.count == 0%}
@@ -37,7 +56,7 @@
 {%endif%}
 
 {% for movie in object.movie_set.all %}
-<a class="subset_link" href={{movie.get_absolute_url}}>
+<a class="generic_subset_link" href={{movie.get_absolute_url}}>
     <div class="col-xs-12">
         <h2>{{movie.name}}</h2>
     </div>

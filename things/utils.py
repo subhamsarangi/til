@@ -14,7 +14,7 @@ def unique_slug_generator(name, new_slug=None):
 	slug = slugify(name)
 	new_slug =  "{slug}_{randstr}".format(
 	            slug=slug,
-	            randstr=random_string_generator(size=5)
+	            randstr=random_string_generator(size=8)
 	        )
 	return new_slug
 
@@ -86,6 +86,17 @@ watch_statuses = (
     ('n', 'Not watched'),
     ('s', 'Started'),
     ('h', 'Halfway through'),
+)
+site_types = (
+    ('ed', 'Educational'),
+    ('sr', 'Subreddit'),
+    ('yt', 'Youtube Channel'),
+    ('nm', 'News & Magazine'),
+    ('ut', 'useful Tools'),
+    ('po', 'Portfolio'),
+    ('pr', 'Programming'),
+    ('ar', 'Art'),
+    ('mo','Money'),
 )
 alphasymspace = RegexValidator(
     r"^[a-zA-Z0-9 %&#?!;.,'+/*-]*$", "Alphanumeric characters, space and %&#?!;.,'+/*- are allowed.")
