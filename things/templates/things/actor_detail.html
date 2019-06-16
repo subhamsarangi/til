@@ -21,7 +21,7 @@
             <p class="generic_card_info2">{{object.get_gender_display}}</p>
             <p class="generic_card_info1">{%if object.dob%}{{object.dob}}{%endif%}</p>
             <p><i class="flag2x {{ object.country.flag_css }}"></i></p>
-            <p>{%if object.insta%}{{object.insta}}{%endif%}</p>
+            <p><a href="{%if object.insta%}{{object.insta}}{%endif%}" target='_blank'>{%if object.insta%}{{object.insta}}{%endif%}</a></p>
         </div>
         {%if request.user == object.owner%}
         <div id="generic_buttons">
@@ -34,7 +34,7 @@
         </div>
         {%else%}
         <div class="generic_creator">
-            <h4>Created by {{object.owner}} at {{object.timestamp}}</h4>
+            <h4>Created by <a href="{%url 'things:user' object.owner%}">{{object.owner}}</a> at {{object.timestamp}}</h4>
         </div>
         {%endif%}
     </div>

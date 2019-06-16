@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -34,20 +34,46 @@ class HomeView(View):
         }
         return render(request, self.template_name, context)
 
-class ProfileView(View):
-    template_name='things/profile.html'
 
-    def get(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated():
-            actor_list = Actor.objects.filter(owner=self.request.user)
-            context = {
-                'actor_list':actor_list,
-            }
-        else:
-            context= {}
+def user_profile(request, user_slug):
+    uprofile = get_object_or_404(Profile, slug=user_slug)
+    return render(request, 'things/user.html', {'uprofile': uprofile})
 
-        return render(request, self.template_name, context)
+class ProfileView(DetailView, LoginRequiredMixin):
+    def get_queryset(self):
+        return Profile.objects.filter(owner=self.request.user)
 
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=ProfileUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(ProfileUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().slug
+        ctx['formtitle'] = 'Account: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Profile.objects.filter(owner=self.request.user)
+
+class SettingsUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=SettingsUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(SettingsUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().slug
+        ctx['formtitle'] = 'Settings: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Settings.objects.filter(owner=self.request.user)
 
 class ActorCreateView(LoginRequiredMixin, CreateView):
     form_class=ActorCreateForm
@@ -106,5 +132,5 @@ class ActorListView(ListView):
                 Q(name__icontains=slug)
             )
         else:
-            queryset = Actor.objects.all()
+            queryset = Actor.objects.all().order_by('?')
         return queryset

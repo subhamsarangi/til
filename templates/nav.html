@@ -23,7 +23,7 @@
         <ul class="nav navbar-nav navbar-right" style="padding-top: 8px;margin-right:10px!important"> <!-- links for the logged in user -->
           {%if request.user.is_authenticated%}
             <li id="username">
-                <a href="/profile">{{request.user}}</a>            
+                <a href="{%url 'things:profile' request.user %}">{{request.user}}</a>            
             </li>
             <li class="right" id="logout"><a href="/logout/"><small>Logout</small></a></li>
           {%else%}

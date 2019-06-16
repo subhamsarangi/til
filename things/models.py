@@ -2,6 +2,7 @@ import os
 from django.db import models
 from django.conf import settings
 from django.db.models.signals import pre_save, post_save
+from django.contrib.auth.models import User as UserModel
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django_countries.fields import CountryField
@@ -11,13 +12,26 @@ from .utils import *
 User = settings.AUTH_USER_MODEL
 
 class Profile(models.Model):
-    owner = models.ForeignKey(User)
-    first_name=models.CharField(max_length=50, blank=False, validators=[alphanumspacedash])
-    last_name=models.CharField(max_length=50, blank=True, validators=[alphanumspacedash])
-    dob =models.DateField(blank=True, default='01/01/89')
+    owner           =models.ForeignKey(User)
+    first_name      =models.CharField(max_length=50, blank=True, null=True,validators=[alphanumspacedash])
+    last_name       =models.CharField(max_length=50, blank=True, null=True, validators=[alphanumspacedash])
+    dob             =models.DateField(blank=True, default='1989-01-01', null=True)
+    slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
+        
+    def __str__(self):
+        return self.owner.username
+    
+    def get_absolute_url(self):
+        return reverse('things:profile', kwargs={'slug':self.slug})
 
+    class Meta:
+        ordering = ('owner','timestamp',)
+
+    @property
+    def title(self):
+        return self.owner.username
 
 class Settings(models.Model):
     owner = models.ForeignKey(User)
@@ -43,9 +57,33 @@ class Settings(models.Model):
     show_cars=models.BooleanField(default=False)
     show_bikes =models.BooleanField(default=False)
     show_adultmodels =models.BooleanField(default=False)
+    slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
+        
+    def __str__(self):
+        return self.owner.username
+    
+    def get_absolute_url(self):
+        return reverse('things:profile', kwargs={'slug':self.slug})
 
+    class Meta:
+        ordering = ('owner','timestamp',)
+
+    @property
+    def title(self):
+        return self.owner.username
+
+
+def user_registration_receiver(sender, instance, *args, **kwargs):
+    newpro=Profile.objects.create(owner=instance)
+    newpro.slug=instance.username
+    newpro.save()
+    newset=Settings.objects.create(owner=instance)
+    newset.slug=instance.username
+    newset.save()
+
+post_save.connect(user_registration_receiver, sender=UserModel)
 
 class Actor(models.Model):
     genders = (

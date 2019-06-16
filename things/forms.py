@@ -127,3 +127,16 @@ class ActorUpdateForm(forms.ModelForm):
         widgets = {
             'dob': forms.DateInput(attrs={'class':'datepicker'}),
         }
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+        widgets = {
+            'dob': forms.DateInput(attrs={'class':'datepicker'}),
+        }
+
+class SettingsUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Settings
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]

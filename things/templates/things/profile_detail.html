@@ -1,0 +1,57 @@
+{%extends "base.html"%}
+{% block title %}{{request.user}} Profile Page| {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Profile Page" />
+    <meta name="twitter:title" content="Profile Page" />
+    <meta name="description" content="Profile Page"/>
+    <meta name="twitter:description" content="Profile Page" />
+    <meta property="og:description" content="Profile Page" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/profile/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/profile/" />
+    <meta name="keywords" content="" />
+{%endblock%}
+
+{%block content%}
+<div id="things_heading" class="col-xs-12">
+    <h1>{{object.owner}}</h1>
+    <p>{%if object.first_name%}{{object.first_name}}{%endif%} {%if object.last_name%}{{object.last_name}}{%endif%}</p>
+    <p>{%if object.dob%}{{object.dob}}{%endif%}</p>
+</div>
+
+{%if request.user == object.owner%}
+<br>
+<div id="generic_buttons" class="col-xs-12">
+    <button class="generic_edit">
+        <a href='{% url "things:edit_profile" object.id object.slug %}'>Edit Profile</a>
+    </button>
+    <button class="generic_edit">
+        <a href='{% url "things:edit_settings" object.id object.slug %}'>Edit Settings</a>
+    </button>
+</div>
+<br>
+{%endif%}
+
+<div class="col-xs-12">
+    <h2>Actors</h2>
+    {% for obj in object.owner.actor_set.all %}
+    <a class="generic_card_link" href={{obj.get_absolute_url}}>
+        <div class="col-xs-12 col-sm-6 generic_card_wrapper">
+            <div class="generic_card">
+                <div class="generic_card_text col-xs-8">
+                    <h2>{{obj.name}}<i class="{{ obj.country.flag_css }}"></i></h2>
+                    <div>
+                        <p class="generic_card_info2">{{obj.get_gender_display}}</p>
+                        <p class="generic_card_info1">{{obj.dob}}</p>
+                    </div>
+                </div>
+                <div class="generic_card_img col-xs-4">
+                    <img src="{{obj.image.url}}" alt="{{obj.name}} image">
+                </div>
+            </div>
+        </div>
+    </a>
+    {%endfor%}
+</div>
+
+{%endblock content%}

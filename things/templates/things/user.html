@@ -1,0 +1,46 @@
+{%extends "base.html"%}
+{% block title %}{{uprofile.slug}} | User Profile Page | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="{{profile.slug}} - User Profile Page" />
+    <meta name="twitter:title" content="{{profile.slug}} - User Profile Page" />
+    <meta name="description" content="{{profile.slug}} - User Profile Page"/>
+    <meta name="twitter:description" content="{{profile.slug}} - User Profile Page" />
+    <meta property="og:description" content="{{profile.slug}} - User Profile Page" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/user/{{uprofile.slug}}" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/user/{{uprofile.slug}}" />
+    <meta name="keywords" content="" />
+{%endblock%}
+
+{%block content%}
+<div id="things_heading" class="col-xs-12">
+    <h1>{{uprofile.slug}}</h1>
+    <p>{%if uprofile.first_name%}{{uprofile.first_name}}{%endif%} {%if uprofile.last_name%}{{uprofile.last_name}}{%endif%}</p>
+    <p>{%if uprofile.dob%}{{uprofile.dob}}{%endif%}</p>
+</div>
+<!-- <button class="generic_edit">
+    <a href=''>Follow</a>
+</button> -->
+<div class="col-xs-12">
+    <h2>Actors</h2>
+    {% for obj in uprofile.owner.actor_set.all %}
+    <a class="generic_card_link" href={{obj.get_absolute_url}}>
+        <div class="col-xs-12 col-sm-6 generic_card_wrapper">
+            <div class="generic_card">
+                <div class="generic_card_text col-xs-8">
+                    <h2>{{obj.name}}<i class="{{ obj.country.flag_css }}"></i></h2>
+                    <div>
+                        <p class="generic_card_info2">{{obj.get_gender_display}}</p>
+                        <p class="generic_card_info1">{{obj.dob}}</p>
+                    </div>
+                </div>
+                <div class="generic_card_img col-xs-4">
+                    <img src="{{obj.image.url}}" alt="{{obj.name}} image">
+                </div>
+            </div>
+        </div>
+    </a>
+    {%endfor%}
+</div>
+
+{%endblock content%}
