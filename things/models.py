@@ -69,6 +69,7 @@ class Settings(models.Model):
 
     class Meta:
         ordering = ('owner','timestamp',)
+        verbose_name_plural = "settings"
 
     @property
     def title(self):
@@ -118,7 +119,10 @@ class Actor(models.Model):
         return reverse('things:actor', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('name',)
+        ordering = ('rank', 'name',)
+        constraints = [
+            models.UniqueConstraint(fields=['owner', 'rank'], name='each_rank')
+        ]
 
     @property
     def is_female(self):
