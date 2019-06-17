@@ -8,6 +8,7 @@ from django.core.validators import RegexValidator
 from django.core.files.images import get_image_dimensions
 
 def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
+    """generating random files"""
     return ''.join(random.choice(chars) for _ in range(size))
 
 def unique_slug_generator(name, new_slug=None):
