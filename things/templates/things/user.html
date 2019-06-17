@@ -16,7 +16,8 @@
 <div id="things_heading" class="col-xs-12">
     <h1>{{uprofile.slug}}</h1>
     <p>{%if uprofile.first_name%}{{uprofile.first_name}}{%endif%} {%if uprofile.last_name%}{{uprofile.last_name}}{%endif%}</p>
-    <p>{%if uprofile.dob%}{{uprofile.dob}}{%endif%}</p>
+    <p>{%if uprofile.dob%}Date of Birth: {{uprofile.dob|date:"d M"}}{%endif%}</p>
+    <p>Joined: {{uprofile.timestamp|date:"d M Y"}}</p>
 </div>
 <!-- <button class="generic_edit">
     <a href=''>Follow</a>
@@ -24,14 +25,22 @@
 <div class="col-xs-12">
     <h2>Actors</h2>
     {% for obj in uprofile.owner.actor_set.all %}
+        {%if not obj.is_private%}
         {%include 'things/snippets/actors.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
     {%endfor%}
 </div>
 
 <div class="col-xs-12">
     <h2>Vehicle</h2>
     {% for obj in uprofile.owner.vehicle_set.all %}
+        {%if not obj.is_private%}
         {%include 'things/snippets/vehicles.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
     {%endfor%}
 </div>
 

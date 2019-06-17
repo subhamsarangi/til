@@ -17,18 +17,30 @@
 	<h1>What they like</h1>
 </div>
 
-<div class="col-xs-12">
+<div class="col-xs-12 generic_section">
     <h2>Actors</h2>
     {% for obj in actor_list %}
         {%include 'things/snippets/actors.html'%}
     {%endfor%}
+
+    {%if actor_list.count == 5%}
+        <a href="{%url 'things:actors'%}"></a>
+    {%else%}
+        <p>Create new to fill this section up.</p>
+    {%endif%}
 </div>
 
-<div class="col-xs-12">
-    <h1>Vehicle List</h1>
+<div class="col-xs-12 generic_section">
+    <h2>Vehicle List</h2>
     {% for obj in vehicle_list %}
         {%include 'things/snippets/vehicles.html'%}
     {%endfor%}
+
+    {%if vehicle_list.count == 5%}
+    <a href="{%url 'things:vehicles'%}"></a>
+    {%else%}
+        <p>Create new to fill this section up.</p>
+    {%endif%}
 </div>
 
 {%endblock content%}

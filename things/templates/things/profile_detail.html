@@ -16,7 +16,8 @@
 <div id="things_heading" class="col-xs-12">
     <h1>{{object.owner}}</h1>
     <p>{%if object.first_name%}{{object.first_name}}{%endif%} {%if object.last_name%}{{object.last_name}}{%endif%}</p>
-    <p>{%if object.dob%}{{object.dob}}{%endif%}</p>
+    <p>{%if object.dob%}Date of Birth: {{object.dob|date:"d M"}}{%endif%}</p>
+    <p>Joined: {{object.timestamp|date:"d M Y"}}</p>
 </div>
 
 {%if request.user == object.owner%}
@@ -36,6 +37,8 @@
     <h2>Actors</h2>
     {% for obj in object.owner.actor_set.all %}
         {%include 'things/snippets/actors.html'%}
+    {%empty%}
+        <p>Nothing here</p>
     {%endfor%}
 </div>
 
@@ -43,6 +46,8 @@
     <h2>Vehicles</h2>
     {% for obj in object.owner.vehicle_set.all %}
         {%include 'things/snippets/vehicles.html'%}
+    {%empty%}
+        <p>Nothing here</p>
     {%endfor%}
 </div>
 

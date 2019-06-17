@@ -27,11 +27,21 @@ class HomeView(View):
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
-            actor_list = Actor.objects.filter(~Q(owner=self.request.user))[:5]
-            vehicle_list = Vehicle.objects.filter(~Q(owner=self.request.user))[:5]
+            actor_list = Actor.objects.filter(
+                ~Q(owner=self.request.user)&
+                Q(is_private=False)
+                )[:5]
+            vehicle_list = Vehicle.objects.filter(
+                ~Q(owner=self.request.user)&
+                Q(is_private=False)
+                )[:5]
         else:
-            actor_list = Actor.objects.all().order_by('?')[:5]
-            vehicle_list = Vehicle.objects.all().order_by('?')[:5]
+            actor_list = Actor.objects.filter(
+                is_private=False
+                ).order_by('?')[:5]
+            vehicle_list = Vehicle.objects.filter(
+                is_private=False
+                ).order_by('?')[:5]
         context = {
             'actor_list':actor_list,
             'vehicle_list':vehicle_list,
@@ -135,12 +145,12 @@ class ActorListView(ListView):
             slug = self.kwargs.get("slug")
             if slug:
                 queryset = Actor.objects.filter(
-                    Q(is_private=True) & 
+                    Q(is_private=False) & 
                     (Q(name=slug) |
                     Q(name__icontains=slug))
                 )
             else:
-                queryset = Actor.objects.all().order_by('?')
+                queryset = Actor.objects.filter(is_private=False).order_by('?')
             return queryset
         except PageNotAnInteger:
             paginator = Paginator(queryset, self.paginate_by)

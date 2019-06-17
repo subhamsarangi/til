@@ -21,6 +21,8 @@
 
 {% for obj in object_list %}
     {%include 'things/snippets/vehicles.html'%}
+{%empty%}
+    <p>Nothing here</p>
 {%endfor%}
 
 {%include 'pagination2.html'%}

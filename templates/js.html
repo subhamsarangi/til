@@ -7,7 +7,7 @@ $( ".datepicker" ).datepicker({
     defaultDate: new Date(1989, 0, 01)
 });
 if(document.URL.split('/')[3]=='actor' && document.URL.split('/')[6]=='edit'){
-    $('#id_image').parent().find('a').after('<img style="height:300px;object-fit:cover" src="'+$('#id_image').parent().find('a').attr('href')+'">'); //from anchor href to a img src
+    $('#id_image').parent().find('a').after('<img style="height:300px;object-fit:cover;    object-position: 0 -60px;" src="'+$('#id_image').parent().find('a').attr('href')+'">'); //from anchor href to a img src
     $('#id_image').parent().css({
         'border': '1px solid teal',
         'padding': '10px'

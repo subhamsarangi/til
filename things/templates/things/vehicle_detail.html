@@ -19,44 +19,26 @@
         <div id="generic_info">
             <p class="generic_card_info2">{{object.get_vehicle_type_display}}</p>
             <p class="generic_card_info1">{{object.company}}</p>
+            <p>{%if object.is_private%}<span id="private">This is kept private</span>{%endif%}</p>
         </div>
-        {%if request.user == object.owner%}
-        <div id="generic_buttons">
-            <button class="generic_edit">
-                <a href='{% url "things:edit_vehicle" object.id object.slug %}'>Edit this page</a>
-            </button>
-            <button class="generic_edit">
-                <a href='{% url "things:del_vehicle" object.id object.slug %}'>Delete this page</a>
-            </button>
-        </div>
-        {%else%}
-        <div class="generic_creator">
-            <h4>Created by <a href="{%url 'things:user' object.owner%}">{{object.owner}}</a> at {{object.timestamp}}</h4>
-        </div>
-        {%endif%}
     </div>
 
     <div class="col-xs-12 col-md-7" id="generic_img">
         <img src="{%if object.image_url%}{{object.image_url}}{%endif%}"  alt="{{object.name}}" width="100%" height="500px" style="object-fit: cover;object-position: top;">
     </div>
 </div>
-
-{%if object.movie_set.all.count == 0%}
-    <div>
-        <div class="col-xs-12">
-            <img src="/media/empty.png" alt="Ain't nothing in here." width="100%">
-        </div>
-        <h2>We couldn't find any Movies of this actor in your movie collection.</h2>
+{%if request.user == object.owner%}
+    <div id="generic_buttons">
+        <button class="generic_edit">
+            <a href='{% url "things:edit_vehicle" object.id object.slug %}'>Edit this page</a>
+        </button>
+        <button class="generic_edit">
+            <a href='{% url "things:del_vehicle" object.id object.slug %}'>Delete this page</a>
+        </button>
     </div>
-{%else%}
-    <div><h1>Movies where {{object.name}} appears in</h1></div>
+    {%else%}
+    <div class="generic_creator">
+        <h4>Created by <a href="{%url 'things:user' object.owner%}">{{object.owner}}</a> at {{object.timestamp}}</h4>
+    </div>
 {%endif%}
-
-{% for movie in object.movie_set.all %}
-<a class="generic_subset_link" href={{movie.get_absolute_url}}>
-    <div class="col-xs-12">
-        <h2>{{movie.name}}</h2>
-    </div>
-</a>
-{%endfor%}
 {%endblock content%}
