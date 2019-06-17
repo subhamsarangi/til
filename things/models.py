@@ -104,7 +104,7 @@ class Actor(models.Model):
     country         =CountryField(blank_label='(select country)')
     image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     dob             =models.DateField(blank=False, default='01/01/89')
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12, unique=True)
     insta           =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
     slug            =models.SlugField(blank=True, null=True)

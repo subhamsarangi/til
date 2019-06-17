@@ -5,7 +5,11 @@ from .models import *
 admin.site.register(Profile)
 admin.site.register(Settings)
 
-admin.site.register(Actor)
+class ActorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'rank', 'country', 'dob')
+    list_filter = ['country']
+
+admin.site.register(Actor, ActorAdmin)
 admin.site.register(Director)
 admin.site.register(Writer)
 admin.site.register(Musician)
