@@ -5,6 +5,7 @@ from django.views.generic import (ListView, DetailView, CreateView, UpdateView, 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
 from .forms import *
@@ -26,11 +27,11 @@ class HomeView(View):
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
-            actor_list = Actor.objects.filter(~Q(owner=self.request.user))
-            vehicle_list = Vehicle.objects.filter(~Q(owner=self.request.user))
+            actor_list = Actor.objects.filter(~Q(owner=self.request.user))[:5]
+            vehicle_list = Vehicle.objects.filter(~Q(owner=self.request.user))[:5]
         else:
-            actor_list = Actor.objects.all().order_by('?')
-            actor_list = Vehicle.objects.all().order_by('?')
+            actor_list = Actor.objects.all().order_by('?')[:5]
+            vehicle_list = Vehicle.objects.all().order_by('?')[:5]
         context = {
             'actor_list':actor_list,
             'vehicle_list':vehicle_list,
@@ -128,16 +129,28 @@ class ActorDetailView(DetailView):
         return Actor.objects.all()
 
 class ActorListView(ListView):
+    paginate_by = 15
     def get_queryset(self):
-        slug = self.kwargs.get("slug")
-        if slug:
-            queryset = Actor.objects.filter(
-                Q(name=slug) |
-                Q(name__icontains=slug)
-            )
-        else:
-            queryset = Actor.objects.all().order_by('?')
-        return queryset
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = Actor.objects.filter(
+                    Q(is_private=True) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug))
+                )
+            else:
+                queryset = Actor.objects.all().order_by('?')
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)
+
 
 class VehicleCreateView(LoginRequiredMixin, CreateView):
     form_class=VehicleCreateForm
@@ -189,13 +202,22 @@ class VehicleDetailView(DetailView):
 
 class VehicleListView(ListView):
     def get_queryset(self):
-        slug = self.kwargs.get("slug")
-        if slug:
-            queryset = Vehicle.objects.filter(
-                Q(status='ok') & 
-                (Q(name=slug) |
-                Q(name__icontains=slug))
-            )
-        else:
-            queryset = Vehicle.objects.all()
-        return queryset
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = Vehicle.objects.filter(
+                    Q(is_private=True) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug))
+                )
+            else:
+                queryset = Vehicle.objects.all()
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)

@@ -1,0 +1,19 @@
+<a class="generic_card_link" href={{obj.get_absolute_url}}>
+    <div class="col-xs-12 col-sm-6 generic_card_wrapper">
+        <div class="generic_card">
+            <div class="generic_card_text col-xs-8">
+                <h2>{{obj.name}}<i class="{{ obj.country.flag_css }}"></i></h2>
+                <div>
+                    <p class="generic_card_info2">{{obj.get_gender_display}}</p>
+                    <p class="generic_card_info1">{{obj.dob}}</p>
+                    <p class="generic_creator">
+                        Created by {{obj.owner}}
+                    </p>
+                </div>
+            </div>
+            <div class="generic_card_img col-xs-4">
+                <img src="{{obj.image.url}}" alt="{{obj.name}} image">
+            </div>
+        </div>
+    </div>
+</a>

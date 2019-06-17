@@ -1,0 +1,25 @@
+<div class="col-xs-12">
+    <p id="pagecountseries">
+      <span id="pagecount">{{object_list|length}} items
+      {% if not is_paginated %}</span></p>
+      {% else %}
+      shown(out of {{ page_obj.paginator.count }})</span>
+        <span id="pageseries">item #{{ page_obj.start_index }} to #{{ page_obj.end_index }}</span>
+    </p>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">&lt;&lt;previous</a>
+            {% endif %}
+  
+            <span class="current">
+                <strong>page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</strong>
+            </span>
+  
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next&gt;&gt;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+</div>
