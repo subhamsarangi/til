@@ -1,5 +1,4 @@
 from django import forms
-
 from .models import *
 
 #CREATE FORMS
@@ -14,6 +13,7 @@ class ActorCreateForm(forms.ModelForm):
         widgets = {
             'dob': forms.DateInput(attrs={'class':'datepicker'}),
         }
+
 
 class DirectorCreateForm(forms.ModelForm):
     class Meta:

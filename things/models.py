@@ -15,7 +15,7 @@ class Profile(models.Model):
     owner           =models.ForeignKey(User)
     first_name      =models.CharField(max_length=50, blank=True, null=True,validators=[alphanumspacedash])
     last_name       =models.CharField(max_length=50, blank=True, null=True, validators=[alphanumspacedash])
-    dob             =models.DateField(blank=True, default='1989-01-01', null=True)
+    dob             =models.DateField(blank=True, null=True)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -120,9 +120,7 @@ class Actor(models.Model):
 
     class Meta:
         ordering = ('rank', 'name',)
-        constraints = [
-            models.UniqueConstraint(fields=['owner', 'rank'], name='each_rank')
-        ]
+        unique_together = ('owner', 'rank')
 
     @property
     def is_female(self):
