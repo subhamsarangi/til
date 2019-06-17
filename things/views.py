@@ -27,10 +27,14 @@ class HomeView(View):
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated():
             actor_list = Actor.objects.filter(~Q(owner=self.request.user))
+            vehicle_list = Vehicle.objects.filter(~Q(owner=self.request.user))
         else:
             actor_list = Actor.objects.all().order_by('?')
+            actor_list = Vehicle.objects.all().order_by('?')
         context = {
             'actor_list':actor_list,
+            'vehicle_list':vehicle_list,
+
         }
         return render(request, self.template_name, context)
 
@@ -133,4 +137,65 @@ class ActorListView(ListView):
             )
         else:
             queryset = Actor.objects.all().order_by('?')
+        return queryset
+
+class VehicleCreateView(LoginRequiredMixin, CreateView):
+    form_class=VehicleCreateForm
+    template_name='things/form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(VehicleCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(VehicleCreateView, self).get_context_data(**kwargs)
+        ctx['formtitle'] = 'Add new Vehicle'
+        ctx['formbutton'] = 'Create'
+        return ctx
+
+
+class VehicleUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=VehicleUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(VehicleUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().name
+        ctx['formtitle'] = 'Updating: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Vehicle.objects.filter(owner=self.request.user)
+
+class VehicleDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('things:vehicles')
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(VehicleDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+
+    def get_queryset(self):
+        return Vehicle.objects.filter(owner=self.request.user)
+
+class VehicleDetailView(DetailView):
+    def get_queryset(self):
+        return Vehicle.objects.all()
+
+class VehicleListView(ListView):
+    def get_queryset(self):
+        slug = self.kwargs.get("slug")
+        if slug:
+            queryset = Vehicle.objects.filter(
+                Q(status='ok') & 
+                (Q(name=slug) |
+                Q(name__icontains=slug))
+            )
+        else:
+            queryset = Vehicle.objects.all()
         return queryset

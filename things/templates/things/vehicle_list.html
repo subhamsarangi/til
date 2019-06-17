@@ -1,0 +1,43 @@
+{%extends "base.html"%}
+{%load static%}
+{% block title %}Vehicles | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Vehicles" />
+    <meta name="twitter:title" content="Vehicles" />
+    <meta name="description" content="Vehicle List"/>
+    <meta name="twitter:description" content="Vehicle List" />
+    <meta property="og:description" content="Vehicle List" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/actors/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/actors/" />
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
+{%endblock%}
+
+{%block content%}
+<div id="generic_list_heading" class="col-xs-12">
+	<h1>Vehicle List</h1>
+</div>
+
+{% for obj in object_list %}
+<a class="generic_card_link" href={{obj.get_absolute_url}}>
+    <div class="col-xs-12 col-sm-6 generic_card_wrapper">
+        <div class="generic_card">
+            <div class="generic_card_text col-xs-8">
+                <h2>{{obj.name}}<i class="{{ obj.country.flag_css }}"></i></h2>
+                <div>
+                    <p class="generic_card_info2">{{obj.get_vehicle_type_display}}</p>
+                    <p class="generic_card_info1">{{obj.company}}</p>
+                    <p class="generic_creator">
+                        Created by {{obj.owner}}
+                    </p>
+                </div>
+            </div>
+            <div class="generic_card_img col-xs-4">
+                <img src="{%if obj.image_url%}{{obj.image_url}}{%endif%}" alt="{{obj.name}} image">
+            </div>
+        </div>
+    </div>
+</a>
+{%endfor%}
+
+{%endblock content%}

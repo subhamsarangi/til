@@ -51,69 +51,82 @@ class FitnessPersonCreateForm(forms.ModelForm):
         model = FitnessPerson
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class FemaleModelCreateForm(forms.ModelForm):
+class FemaleCreateForm(forms.ModelForm):
     class Meta:
         model = FemaleModel
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class AdultModelCreateForm(forms.ModelForm):
+class AdultCreateForm(forms.ModelForm):
     class Meta:
         model = AdultModel
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class MovieModelCreateForm(forms.ModelForm):
+class MovieCreateForm(forms.ModelForm):
     class Meta:
         model = Movie
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class TVShowModelCreateForm(forms.ModelForm):
+class TVShowCreateForm(forms.ModelForm):
     class Meta:
         model = TVShow
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class AnimeModelCreateForm(forms.ModelForm):
+class AnimeCreateForm(forms.ModelForm):
     class Meta:
         model = Anime
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class BookModelCreateForm(forms.ModelForm):
+class BookCreateForm(forms.ModelForm):
     class Meta:
         model = Book
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class SongModelCreateForm(forms.ModelForm):
+class SongCreateForm(forms.ModelForm):
     class Meta:
         model = Song
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class YoutubeChannelModelCreateForm(forms.ModelForm):
+class YoutubeChannelCreateForm(forms.ModelForm):
     class Meta:
         model = YoutubeChannel
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class ApplicationModelCreateForm(forms.ModelForm):
+class ApplicationCreateForm(forms.ModelForm):
     class Meta:
         model = Application
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class WebsiteModelCreateForm(forms.ModelForm):
+class WebsiteCreateForm(forms.ModelForm):
     class Meta:
         model = Website
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class PlaceModelCreateForm(forms.ModelForm):
+class PlaceCreateForm(forms.ModelForm):
     class Meta:
         model = Place
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class FoodModelCreateForm(forms.ModelForm):
+class FoodCreateForm(forms.ModelForm):
     class Meta:
         model = Food
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class VehicleModelCreateForm(forms.ModelForm):
+class VehicleCreateForm(forms.ModelForm):
     class Meta:
         model = Vehicle
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+        widgets = {
+            'dob': forms.DateInput(attrs={'class':'datepicker'}),
+        }
+
+class SettingsUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Settings
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
 class ActorUpdateForm(forms.ModelForm):
@@ -128,15 +141,7 @@ class ActorUpdateForm(forms.ModelForm):
             'dob': forms.DateInput(attrs={'class':'datepicker'}),
         }
 
-class ProfileUpdateForm(forms.ModelForm):
+class VehicleUpdateForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        exclude = ['owner', 'slug', 'timestamp', 'updated',]
-        widgets = {
-            'dob': forms.DateInput(attrs={'class':'datepicker'}),
-        }
-
-class SettingsUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Settings
+        model = Vehicle
         exclude = ['owner', 'slug', 'timestamp', 'updated',]

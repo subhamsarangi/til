@@ -119,8 +119,8 @@ class Actor(models.Model):
         return reverse('things:actor', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('rank', 'name',)
-        unique_together = ('owner', 'rank')
+        ordering = ('-rank', 'name',)
+        unique_together = ('owner', 'rank', 'gender')
 
     @property
     def is_female(self):
@@ -775,7 +775,7 @@ class Vehicle(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('things:place', kwargs={'slug':self.slug})
+        return reverse('things:vehicle', kwargs={'slug':self.slug})
 
     class Meta:
         ordering = ('name',)

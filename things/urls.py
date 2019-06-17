@@ -20,5 +20,10 @@ urlpatterns = [
     url(r'^actor/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.ActorUpdateView.as_view(), name='edit_actor'),
     url(r'^actor/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.ActorDeleteView.as_view(),name='del_actor'),
     url(r'^actor/(?P<slug>[\w-]+)/$', views.ActorDetailView.as_view(), name='actor'),
-    
+
+    url(r'^vehicles/$', views.VehicleListView.as_view(), name='vehicles'),
+    url(r'^add-vehicle/$', views.VehicleCreateView.as_view(),name='new_vehicle'),
+    url(r'^vehicle/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.VehicleUpdateView.as_view(), name='edit_vehicle'),
+    url(r'^vehicle/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.VehicleDeleteView.as_view(),name='del_vehicle'),
+    url(r'^vehicle/(?P<slug>[\w-]+)/$', views.VehicleDetailView.as_view(), name='vehicle'),
 ]
