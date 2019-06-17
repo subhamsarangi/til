@@ -76,12 +76,14 @@ class Settings(models.Model):
 
 
 def user_registration_receiver(sender, instance, *args, **kwargs):
-    newpro=Profile.objects.create(owner=instance)
-    newpro.slug=instance.username
-    newpro.save()
-    newset=Settings.objects.create(owner=instance)
-    newset.slug=instance.username
-    newset.save()
+    if not Profile.objects.filter(owner=instance):
+        newpro=Profile.objects.create(owner=instance)
+        newpro.slug=instance.username
+        newpro.save()
+    if not Settings.objects.filter(owner=instance):
+        newset=Settings.objects.create(owner=instance)
+        newset.slug=instance.username
+        newset.save()
 
 post_save.connect(user_registration_receiver, sender=UserModel)
 
@@ -784,8 +786,8 @@ class Vehicle(models.Model):
 # others
 
 def act_pre_save_receiver(sender, instance, *args, **kwargs):
+    image_modification_tool(instance.image, 500)
     if not instance.slug:
-        image_modification_tool(instance.image, 500)
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
 
@@ -800,8 +802,8 @@ def wr_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance.name)
 
 def mu_pre_save_receiver(sender, instance, *args, **kwargs):
+    image_modification_tool(instance.image, 500)
     if not instance.slug:
-        image_modification_tool(instance.image, 500)
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
 
@@ -811,14 +813,14 @@ def ar_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance.name)
 
 def da_pre_save_receiver(sender, instance, *args, **kwargs):
+    image_modification_tool(instance.image, 500)
     if not instance.slug:
-        image_modification_tool(instance.image, 500)
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
 
 def sp_pre_save_receiver(sender, instance, *args, **kwargs):
+    image_modification_tool(instance.image, 500)
     if not instance.slug:
-        image_modification_tool(instance.image, 500)
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
 
@@ -828,8 +830,8 @@ def ft_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance.name)
 
 def mod_pre_save_receiver(sender, instance, *args, **kwargs):
+    image_modification_tool(instance.image, 500)
     if not instance.slug:
-        image_modification_tool(instance.image, 500)
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
 
