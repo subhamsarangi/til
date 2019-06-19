@@ -86,10 +86,9 @@
         color: #eee;
         font-size: 1.2rem;
         font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-family: 
     }
     h1{
-        font-family: 'Carter One', cursive;
+        font-family: 'Lemon', cursive;
     }
     a, a:hover, a:active, a:focus, a:visited{
         color: #fff;
@@ -145,25 +144,11 @@
         font-size: 14px;
         background: #553b3b;
     }
-    #generic_list_heading, #generic_heading{
-        font-size: 4em;
-        font-family: 'Carter One', cursive;
+    #things_heading h1, #generic_list_heading h1{
         letter-spacing: 1px;
         color: transparent;
         background-color: white;
-        background: linear-gradient(to right,#ff8a00,#da1b60 13%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -moz-background-clip: text;
-        text-fill-color: transparent;
-        -webkit-text-fill-color: transparent;
-        -moz-text-fill-color: transparent;
-    }
-    #things_heading h1{
-        letter-spacing: 1px;
-        color: transparent;
-        background-color: white;
-        background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+        background: linear-gradient(to right, #c6ffdd 15%, #fbd786 47%, #f7797d 60%);
         background-clip: text;
         -webkit-background-clip: text;
         -moz-background-clip: text;
@@ -171,6 +156,21 @@
         -webkit-text-fill-color: transparent;
         -moz-text-fill-color: transparent;
         display: inline-block;
+    }
+    #generic_heading{
+        font-size: 4em;
+        font-family: 'Lemon', cursive;
+        letter-spacing: 1px;
+        color: transparent;
+        background-color: white;
+        background: linear-gradient(to right,#ff8a00 15%, #f7797d 45%, #da1b60 60%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        text-fill-color: transparent;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        margin-bottom: .75em;
     }
     .generic_card_link{
 
@@ -207,6 +207,38 @@
         height: 100%;
         object-fit: cover;
         object-position: top;
+     }
+    #generic_img_link{
+        text-align: center;
+        background: #222;
+        font-size: 1.4em;
+        padding: 3px 1px;
+        margin-bottom: 0;
+    }
+    #generic_img_link:hover{
+        color: #2fe;
+    }
+    .generic_rank{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.65em;
+        border-radius: 0 0 0 2em;
+        padding: 0 .1em .2em .35em;
+        background: #3c084d;
+        color: #fc3;
+        font-style: italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    #generic_rank{
+        padding: .25em .75em;
+        background: #3c084d;
+        color: #fc3;
+        border: 1px solid #fc3;
+        font-style: italic;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 1.9em;
+        display: inline-block;
     }
     .generic_card_info1, .generic_card_info2{
         display: inline-block;
@@ -219,19 +251,49 @@
     .generic_card_info2{
         background: rgba(111, 123, 233, 0.133);
     }
+    .generic_country{
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+    }
+    .generic_country span{
+        padding: 0 8px;
+        font-family: 'Comfortaa', cursive;
+        font-size: 1.6em;
+    }
     #generic_extra {
         display: block;
         width: 100%;
-        padding: 1em 2em;
+        padding: 1em;
     }
     #generic_img{
         padding-right: 0px;
         padding-left: 0px;
+        background: linear-gradient(to top, #df1098 10%, #15769f 65%);
+        padding: 2px;
+        transition: all 2s ease;
+    }
+    #generic_img:hover{
+        background: linear-gradient(to top, #df10977e 10%, #15769f7e 65%);
+    }
+    #generic_img img{
+        width:100%;
+        height:500px;
+        object-fit:cover;
+        object-position: top;
+        transition: object-fit 1s ease-in;
+    }
+    #generic_img img:hover{
+        box-shadow: 2px 2px 6px 1px #487b777e;
+    }
+    #generic_empty{
+        text-align: center;
     }
     #generic_empty img{
         width: 100%;
         height: 200px;
         object-fit: contain;
+        opacity: .6;
     }
     .generic_edit{
         background: #ddd;

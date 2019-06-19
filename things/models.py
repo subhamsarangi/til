@@ -1,7 +1,9 @@
 import os
+
 from django.db import models
-from django.conf import settings
+from django.db.models import F
 from django.db.models.signals import pre_save, post_save
+from django.conf import settings
 from django.contrib.auth.models import User as UserModel
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
@@ -105,7 +107,7 @@ class Actor(models.Model):
     country         =CountryField(blank_label='(select country)')
     image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     dob             =models.DateField(blank=False, default='01/01/89')
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12, unique=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     insta           =models.URLField(max_length=200, blank=True, null=True)
     is_private      =models.BooleanField(default=False)
     remarks         =models.TextField(blank=True, null=True)
@@ -120,7 +122,7 @@ class Actor(models.Model):
         return reverse('things:actor', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name')
         unique_together = ('owner', 'rank', 'gender')
 
     @property
@@ -158,7 +160,7 @@ class Director(models.Model):
         return reverse('things:director', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -196,7 +198,7 @@ class Writer(models.Model):
         return reverse('things:writer', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -225,7 +227,7 @@ class Artist(models.Model):
         return reverse('things:artist', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -267,7 +269,7 @@ class Musician(models.Model):
         return reverse('things:musician', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank', 'mtype')
 
     @property
@@ -300,7 +302,7 @@ class Dancer(models.Model):
         return reverse('things:dancer', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -339,7 +341,7 @@ class SportsPerson(models.Model):
         return reverse('things:sportsperson', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -375,7 +377,7 @@ class FitnessPerson(models.Model):
         return reverse('things:fitnessperson', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -408,7 +410,7 @@ class FemaleModel(models.Model):
         return reverse('things:model', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -438,7 +440,7 @@ class AdultModel(models.Model):
         return reverse('things:adult', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -469,7 +471,7 @@ class Movie(models.Model):
         return reverse('things:movie', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -498,7 +500,7 @@ class TVShow(models.Model):
         return reverse('things:tvshow', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -530,7 +532,7 @@ class Anime(models.Model):
         return reverse('things:anime', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank', 'anime_type')
 
     @property
@@ -572,7 +574,7 @@ class Book(models.Model):
         return reverse('things:book', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -599,7 +601,7 @@ class Song(models.Model):
         return reverse('things:song', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -635,7 +637,7 @@ class YoutubeChannel(models.Model):
         return reverse('things:youtubechannel', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -662,7 +664,7 @@ class Application(models.Model):
         return reverse('things:application', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -690,7 +692,7 @@ class Website(models.Model):
         return reverse('things:website', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
 
     @property
@@ -735,7 +737,7 @@ class Place(models.Model):
         return reverse('things:place', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank','place_type')
 
     @property
@@ -783,7 +785,7 @@ class Food(models.Model):
         return reverse('things:food', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank', 'cuisine')
 
     @property
@@ -818,7 +820,7 @@ class Vehicle(models.Model):
         return reverse('things:vehicle', kwargs={'slug':self.slug})
 
     class Meta:
-        ordering = ('-rank', 'name',)
+        ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank','vehicle_type')
 
     @property

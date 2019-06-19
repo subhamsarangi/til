@@ -1,4 +1,5 @@
 {%extends "base.html"%}
+{%load static%}
 {% block title %}{{request.user}} Profile Page | {{block.super}} {% endblock %}
 
 {%block metatag%}
@@ -10,6 +11,7 @@
     <meta property="og:url" content="likelist.pythonanywhere.com/profile/" />
     <meta name="twitter:domain" content="likelist.pythonanywhere.com/profile/" />
     <meta name="keywords" content="" />
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
 {%endblock%}
 
 {%block content%}
@@ -24,10 +26,10 @@
 <br>
 <div id="generic_buttons" class="col-xs-12">
     <button class="generic_edit">
-        <a href='{% url "things:edit_profile" object.id object.slug %}'>Edit Profile</a>
+        <a href='{% url "things:edit_profile" object.id object.slug %}'><span class="glyphicon glyphicon-edit"> </span> Edit Profile</a>
     </button>
     <button class="generic_edit">
-        <a href='{% url "things:edit_settings" object.id object.slug %}'>Edit Settings</a>
+        <a href='{% url "things:edit_settings" object.id object.slug %}'><span class="glyphicon glyphicon-edit"></span> Edit Settings</a>
     </button>
 </div>
 <br>
@@ -38,7 +40,7 @@
     {% for obj in object.owner.actor_set.all %}
         {%include 'things/snippets/actors.html'%}
     {%empty%}
-        <p>Nothing here</p>
+        <p>Nothing here. <a href="{url 'things:new_actor'}">Create now</a></p>
     {%endfor%}
 </div>
 
@@ -47,7 +49,7 @@
     {% for obj in object.owner.vehicle_set.all %}
         {%include 'things/snippets/vehicles.html'%}
     {%empty%}
-        <p>Nothing here</p>
+        <p>Nothing here. <a href="{url 'things:new_vehicle'}">Create now</a></p>
     {%endfor%}
 </div>
 

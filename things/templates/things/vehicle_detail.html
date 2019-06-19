@@ -30,10 +30,10 @@
 {%if request.user == object.owner%}
     <div id="generic_buttons">
         <button class="generic_edit">
-            <a href='{% url "things:edit_vehicle" object.id object.slug %}'>Edit this page</a>
+            <a href='{% url "things:edit_vehicle" object.id object.slug %}'><span class="glyphicon glyphicon-edit"> </span> Edit this page</a>
         </button>
         <button class="generic_edit">
-            <a href='{% url "things:del_vehicle" object.id object.slug %}'>Delete this page</a>
+            <a href='{% url "things:del_vehicle" object.id object.slug %}'><span class="glyphicon glyphicon-trash"></span> Delete this page</a>
         </button>
     </div>
     {%else%}

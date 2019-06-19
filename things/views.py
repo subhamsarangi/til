@@ -30,11 +30,11 @@ class HomeView(View):
             actor_list = Actor.objects.filter(
                 ~Q(owner=self.request.user)&
                 Q(is_private=False)
-                )[:5]
+                ).order_by('?')[:5]
             vehicle_list = Vehicle.objects.filter(
                 ~Q(owner=self.request.user)&
                 Q(is_private=False)
-                )[:5]
+                ).order_by('?')[:5]
         else:
             actor_list = Actor.objects.filter(
                 is_private=False
@@ -150,7 +150,7 @@ class ActorListView(ListView):
                     Q(name__icontains=slug))
                 )
             else:
-                queryset = Actor.objects.filter(is_private=False).order_by('?')
+                queryset = Actor.objects.filter(is_private=False)
             return queryset
         except PageNotAnInteger:
             paginator = Paginator(queryset, self.paginate_by)
@@ -221,7 +221,7 @@ class VehicleListView(ListView):
                     Q(name__icontains=slug))
                 )
             else:
-                queryset = Vehicle.objects.all()
+                queryset = Vehicle.objects.filter(is_private=False)
             return queryset
         except PageNotAnInteger:
             paginator = Paginator(queryset, self.paginate_by)

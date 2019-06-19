@@ -22,7 +22,7 @@
 {% for obj in object_list %}
     {%include 'things/snippets/vehicles.html'%}
 {%empty%}
-    <p>Nothing here</p>
+    <p>Nothing here. <a href="{url 'things:new_vehicle'}">Create now</a></p>
 {%endfor%}
 
 {%include 'pagination2.html'%}

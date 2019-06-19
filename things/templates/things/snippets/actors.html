@@ -2,7 +2,8 @@
     <div class="col-xs-12 col-sm-6 generic_card_wrapper">
         <div class="generic_card">
             <div class="generic_card_text col-xs-8">
-                <h2>{{obj.name}}<i class="{{ obj.country.flag_css }}"></i></h2>
+                <h2>
+                    {{obj.name}}<i class="{{obj.country.flag_css }}"></i></h2>
                 <div>
                     <p class="generic_card_info2">{{obj.get_gender_display}}</p>
                     <p class="generic_card_info1">{{obj.dob}}</p>
@@ -12,6 +13,9 @@
                 </div>
             </div>
             <div class="generic_card_img col-xs-4">
+                <span class="generic_rank">
+                    {%if obj.rank%}<span class="glyphicon glyphicon-flash"></span> {{obj.get_rank_display}}{%endif%}
+                </span>
                 <img src="{{obj.image.url}}" alt="{{obj.name}} image">
             </div>
         </div>
