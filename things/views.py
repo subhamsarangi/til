@@ -56,7 +56,10 @@ def user_profile(request, user_slug):
 
 class ProfileView(DetailView, LoginRequiredMixin):
     def get_queryset(self):
-        return Profile.objects.filter(owner=self.request.user)
+        if self.request.user.is_authenticated():
+            return Profile.objects.filter(owner=self.request.user)
+        else:
+            return Profile.objects.filter(owner=10)
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class=ProfileUpdateForm
@@ -147,10 +150,10 @@ class ActorListView(ListView):
                 queryset = Actor.objects.filter(
                     Q(is_private=False) & 
                     (Q(name=slug) |
-                    Q(name__icontains=slug))
+                    Q(name__icontains=slug)).order_by('name')
                 )
             else:
-                queryset = Actor.objects.filter(is_private=False)
+                queryset = Actor.objects.filter(is_private=False).order_by('name')
             return queryset
         except PageNotAnInteger:
             paginator = Paginator(queryset, self.paginate_by)
@@ -222,6 +225,293 @@ class VehicleListView(ListView):
                 )
             else:
                 queryset = Vehicle.objects.filter(is_private=False)
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)
+
+
+class MusicianCreateView(LoginRequiredMixin, CreateView):
+    form_class=MusicianCreateForm
+    template_name='things/form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(MusicianCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(MusicianCreateView, self).get_context_data(**kwargs)
+        ctx['formtitle'] = 'Add new Musician'
+        ctx['formbutton'] = 'Create'
+        return ctx
+
+
+class MusicianUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=MusicianUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(MusicianUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().name
+        ctx['formtitle'] = 'Updating: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Musician.objects.filter(owner=self.request.user)
+
+class MusicianDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('things:Musicians')
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(MusicianDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+
+    def get_queryset(self):
+        return Musician.objects.filter(owner=self.request.user)
+
+class MusicianDetailView(DetailView):
+    def get_queryset(self):
+        return Musician.objects.all()
+
+class MusicianListView(ListView):
+    paginate_by = 15
+    def get_queryset(self):
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = Musician.objects.filter(
+                    Q(is_private=False) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug)).order_by('name')
+                )
+            else:
+                queryset = Musician.objects.filter(is_private=False).order_by('name')
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)
+
+
+class MovieCreateView(LoginRequiredMixin, CreateView):
+    form_class=MovieCreateForm
+    template_name='things/form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(MovieCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(MovieCreateView, self).get_context_data(**kwargs)
+        ctx['formtitle'] = 'Add new Movie'
+        ctx['formbutton'] = 'Create'
+        return ctx
+
+class MovieUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=MovieUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(MovieUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().name
+        ctx['formtitle'] = 'Updating: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Movie.objects.filter(owner=self.request.user)
+
+class MovieDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('things:Movies')
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(MovieDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+
+    def get_queryset(self):
+        return Movie.objects.filter(owner=self.request.user)
+
+class MovieDetailView(DetailView):
+    def get_queryset(self):
+        return Movie.objects.all()
+
+class MovieListView(ListView):
+    paginate_by = 15
+    def get_queryset(self):
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = Movie.objects.filter(
+                    Q(is_private=False) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug)).order_by('name')
+                )
+            else:
+                queryset = Movie.objects.filter(is_private=False).order_by('name')
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)
+
+
+class TVShowCreateView(LoginRequiredMixin, CreateView):
+    form_class=TVShowCreateForm
+    template_name='things/form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(TVShowCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(TVShowCreateView, self).get_context_data(**kwargs)
+        ctx['formtitle'] = 'Add new TVShow'
+        ctx['formbutton'] = 'Create'
+        return ctx
+
+
+class TVShowUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=TVShowUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(TVShowUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().name
+        ctx['formtitle'] = 'Updating: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return TVShow.objects.filter(owner=self.request.user)
+
+class TVShowDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('things:TVShows')
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(TVShowDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+
+    def get_queryset(self):
+        return TVShow.objects.filter(owner=self.request.user)
+
+class TVShowDetailView(DetailView):
+    def get_queryset(self):
+        return TVShow.objects.all()
+
+class TVShowListView(ListView):
+    paginate_by = 15
+    def get_queryset(self):
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = TVShow.objects.filter(
+                    Q(is_private=False) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug)).order_by('name')
+                )
+            else:
+                queryset = TVShow.objects.filter(is_private=False).order_by('name')
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)
+
+
+class AnimeCreateView(LoginRequiredMixin, CreateView):
+    form_class=AnimeCreateForm
+    template_name='things/form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(AnimeCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AnimeCreateView, self).get_context_data(**kwargs)
+        ctx['formtitle'] = 'Add new Anime'
+        ctx['formbutton'] = 'Create'
+        return ctx
+
+
+class AnimeUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=AnimeUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(AnimeUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().name
+        ctx['formtitle'] = 'Updating: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Anime.objects.filter(owner=self.request.user)
+
+class AnimeDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('things:Animes')
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(AnimeDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+
+    def get_queryset(self):
+        return Anime.objects.filter(owner=self.request.user)
+
+class AnimeDetailView(DetailView):
+    def get_queryset(self):
+        return Anime.objects.all()
+
+class AnimeListView(ListView):
+    paginate_by = 15
+    def get_queryset(self):
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = Anime.objects.filter(
+                    Q(is_private=False) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug)).order_by('name')
+                )
+            else:
+                queryset = Anime.objects.filter(is_private=False).order_by('name')
             return queryset
         except PageNotAnInteger:
             paginator = Paginator(queryset, self.paginate_by)

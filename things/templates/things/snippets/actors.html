@@ -13,9 +13,15 @@
                 </div>
             </div>
             <div class="generic_card_img col-xs-4">
-                <span class="generic_rank">
-                    {%if obj.rank%}<span class="glyphicon glyphicon-flash"></span> {{obj.get_rank_display}}{%endif%}
-                </span>
+                {%if request.user.is_authenticated%}
+                    {%if request.user == obj.owner%}
+                    <span class="generic_rank">
+                        {%if obj.rank%}
+                            <span class="glyphicon glyphicon-flash"></span> {{obj.get_rank_display}}
+                        {%endif%}
+                    </span>
+                    {%endif%}
+                {%endif%}
                 <img src="{{obj.image.url}}" alt="{{obj.name}} image">
             </div>
         </div>

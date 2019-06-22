@@ -3,11 +3,11 @@
 {% block title %}{{uprofile.slug}} | User Profile Page | {{block.super}} {% endblock %}
 
 {%block metatag%}
-    <meta property="og:title" content="{{profile.slug}} - User Profile Page" />
-    <meta name="twitter:title" content="{{profile.slug}} - User Profile Page" />
-    <meta name="description" content="{{profile.slug}} - User Profile Page"/>
-    <meta name="twitter:description" content="{{profile.slug}} - User Profile Page" />
-    <meta property="og:description" content="{{profile.slug}} - User Profile Page" />
+    <meta property="og:title" content="{{uprofile.slug}} - User Profile Page" />
+    <meta name="twitter:title" content="{{uprofile.slug}} - User Profile Page" />
+    <meta name="description" content="{{uprofile.slug}} - User Profile Page"/>
+    <meta name="twitter:description" content="{{uprofile.slug}} - User Profile Page" />
+    <meta property="og:description" content="{{uprofile.slug}} - User Profile Page" />
     <meta property="og:url" content="likelist.pythonanywhere.com/user/{{uprofile.slug}}" />
     <meta name="twitter:domain" content="likelist.pythonanywhere.com/user/{{uprofile.slug}}" />
     <meta name="keywords" content="" />
@@ -40,6 +40,17 @@
     {% for obj in uprofile.owner.vehicle_set.all %}
         {%if not obj.is_private%}
         {%include 'things/snippets/vehicles.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
+    {%endfor%}
+</div>
+
+<div class="col-xs-12">
+    <h2>Musician</h2>
+    {% for obj in uprofile.owner.musician_set.all %}
+        {%if not obj.is_private%}
+        {%include 'things/snippets/musicians.html'%}
         {%endif%}
     {%empty%}
         <p>Nothing here</p>

@@ -831,7 +831,7 @@ class Vehicle(models.Model):
 # others
 
 def act_pre_save_receiver(sender, instance, *args, **kwargs):
-    image_modification_tool(instance.image, 500)
+    image_modification_tool(instance.image, 400)
     if not instance.slug:
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
@@ -847,7 +847,7 @@ def wr_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance.name)
 
 def mu_pre_save_receiver(sender, instance, *args, **kwargs):
-    image_modification_tool(instance.image, 500)
+    image_modification_tool(instance.image, 400)
     if not instance.slug:
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
@@ -858,13 +858,13 @@ def ar_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance.name)
 
 def da_pre_save_receiver(sender, instance, *args, **kwargs):
-    image_modification_tool(instance.image, 500)
+    image_modification_tool(instance.image, 400)
     if not instance.slug:
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
 
 def sp_pre_save_receiver(sender, instance, *args, **kwargs):
-    image_modification_tool(instance.image, 500)
+    image_modification_tool(instance.image, 400)
     if not instance.slug:
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)
@@ -875,7 +875,7 @@ def ft_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance.name)
 
 def mod_pre_save_receiver(sender, instance, *args, **kwargs):
-    image_modification_tool(instance.image, 500)
+    image_modification_tool(instance.image, 400)
     if not instance.slug:
         instance.name = str(instance.name).title()
         instance.slug = unique_slug_generator(instance.name)

@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+{%load static%}
+{% block title %}Musicians | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Musicians" />
+    <meta name="twitter:title" content="Musicians" />
+    <meta name="description" content="Musician List"/>
+    <meta name="twitter:description" content="Musician List" />
+    <meta property="og:description" content="Musician List" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/musicians/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/musicians/" />
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
+{%endblock%}
+
+{%block content%}
+<div id="generic_list_heading" class="col-xs-12">
+	<h1>Musician List</h1>
+</div>
+{%include 'pagination1.html'%}
+
+{% for obj in object_list %}
+    {%include 'things/snippets/musicians.html'%}
+{%empty%}
+    <p>Nothing here.</p>
+{%endfor%}
+<p><a href="{%url 'things:new_musician'%}">Add</a> a musician.</p>
+
+{%include 'pagination2.html'%}
+
+{%endblock content%}

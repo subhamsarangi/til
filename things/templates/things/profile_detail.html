@@ -40,8 +40,9 @@
     {% for obj in object.owner.actor_set.all %}
         {%include 'things/snippets/actors.html'%}
     {%empty%}
-        <p>Nothing here. <a href="{url 'things:new_actor'}">Create now</a></p>
+        <p>Nothing here.</p>
     {%endfor%}
+    <p><a href="{%url 'things:new_actor'%}">Add</a> an actor.</p>
 </div>
 
 <div class="col-xs-12">
@@ -49,8 +50,28 @@
     {% for obj in object.owner.vehicle_set.all %}
         {%include 'things/snippets/vehicles.html'%}
     {%empty%}
-        <p>Nothing here. <a href="{url 'things:new_vehicle'}">Create now</a></p>
+        <p>Nothing here.</p>
     {%endfor%}
+    <p><a href="{%url 'things:new_vehicle'%}">Add</a> a car or a bike.</p>
+</div>
+
+<div class="col-xs-12">
+    <h2>Musicians</h2>
+    {% for obj in object.owner.musician_set.all %}
+        {%include 'things/snippets/musicians.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+    <p><a href="{%url 'things:new_musician'%}">Add</a> a band or a solo artist.</p>
+</div>
+<div class="col-xs-12">
+    <h2>Movies</h2>
+    {% for obj in object.owner.movie_set.all %}
+        {%include 'things/snippets/movies.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+    <p><a href="{%url 'things:new_movie'%}">Add</a> a movie you watched or want to watch.</p>
 </div>
 
 {%endblock content%}

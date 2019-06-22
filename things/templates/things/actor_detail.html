@@ -16,10 +16,12 @@
 {%block content%}
 <div class="col-xs-12">
     <div class="col-xs-12 col-md-5">
+        {%if request.user == object.owner%}
         {%if object.rank%}
             <div id="generic_rank">
             <span class="glyphicon glyphicon-flash"></span>{{object.get_rank_display}} 
         </div>
+        {%endif%}
         {%endif%}
         <div id="generic_heading">{{object.name}}</div>
         <div id="generic_info">

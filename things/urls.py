@@ -26,4 +26,28 @@ urlpatterns = [
     url(r'^vehicle/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.VehicleUpdateView.as_view(), name='edit_vehicle'),
     url(r'^vehicle/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.VehicleDeleteView.as_view(),name='del_vehicle'),
     url(r'^vehicle/(?P<slug>[\w-]+)/$', views.VehicleDetailView.as_view(), name='vehicle'),
+
+    url(r'^musicians/$', views.MusicianListView.as_view(), name='musicians'),
+    url(r'^add-musician/$', views.MusicianCreateView.as_view(),name='new_musician'),
+    url(r'^musician/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.MusicianUpdateView.as_view(), name='edit_musician'),
+    url(r'^musician/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.MusicianDeleteView.as_view(),name='del_musician'),
+    url(r'^musician/(?P<slug>[\w-]+)/$', views.MusicianDetailView.as_view(), name='musician'),
+
+    url(r'^movies/$', views.MovieListView.as_view(), name='movies'),
+    url(r'^add-movie/$', views.MovieCreateView.as_view(),name='new_movie'),
+    url(r'^movie/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.MovieUpdateView.as_view(), name='edit_movie'),
+    url(r'^movie/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.MovieDeleteView.as_view(),name='del_movie'),
+    url(r'^movie/(?P<slug>[\w-]+)/$', views.MovieDetailView.as_view(), name='movie'),
+
+    url(r'^tvshows/$', views.TVShowListView.as_view(), name='tvshows'),
+    url(r'^add-tvshow/$', views.TVShowCreateView.as_view(),name='new_tvshow'),
+    url(r'^tvshow/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.TVShowUpdateView.as_view(), name='edit_tvshow'),
+    url(r'^tvshow/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.TVShowDeleteView.as_view(),name='del_tvshow'),
+    url(r'^tvshow/(?P<slug>[\w-]+)/$', views.TVShowDetailView.as_view(), name='tvshow'),
+
+    url(r'^animes/$', views.AnimeListView.as_view(), name='animes'),
+    url(r'^add-anime/$', views.AnimeCreateView.as_view(),name='new_anime'),
+    url(r'^anime/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.AnimeUpdateView.as_view(), name='edit_anime'),
+    url(r'^anime/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.AnimeDeleteView.as_view(),name='del_anime'),
+    url(r'^anime/(?P<slug>[\w-]+)/$', views.AnimeDetailView.as_view(), name='anime'),
 ]

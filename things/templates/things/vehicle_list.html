@@ -22,8 +22,9 @@
 {% for obj in object_list %}
     {%include 'things/snippets/vehicles.html'%}
 {%empty%}
-    <p>Nothing here. <a href="{url 'things:new_vehicle'}">Create now</a></p>
+    <p>Nothing here.</p>
 {%endfor%}
+<p><a href="{%url 'things:new_vehicle'%}">Add</a> a vehicle.</p>
 
 {%include 'pagination2.html'%}
 

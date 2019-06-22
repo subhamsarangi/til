@@ -25,11 +25,13 @@
         {%include 'things/snippets/actors.html'%}
     {%endfor%}
 
+    <div class="col-xs-12 col-sm-6">
     {%if actor_list.count == 5%}
-        <a href="{%url 'things:actors'%}" class="generic_card_link">View all</a>
+        <a href="{%url 'things:actors'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
     {%else%}
-        <p>. <a href="{url 'things:new_actor'}">Create</a> new to fill this section up.</p>
+        <p><a href="{%url 'things:new_actor'%}">Create</a> new to fill this section up.</p>
     {%endif%}
+    </div>
 </div>
 
 <div class="col-xs-12 generic_section">
@@ -38,11 +40,44 @@
         {%include 'things/snippets/vehicles.html'%}
     {%endfor%}
 
+    <div class="col-xs-12 col-sm-6">
     {%if vehicle_list.count == 5%}
-    <a href="{%url 'things:vehicles'%}" class="generic_card_link">View all</a>
+        <a href="{%url 'things:vehicles'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
     {%else%}
-        <p>.<a href="{url 'things:new_vehicle'}">Create</a> new to fill this section up.</p>
+        <p><a href="{%url 'things:new_vehicle'%}">Create</a> new to fill this section up.</p>
     {%endif%}
+    </div>
+</div>
+
+
+<div class="col-xs-12 generic_section">
+    <h2>Musician List</h2>
+    {% for obj in musician_list %}
+        {%include 'things/snippets/musicians.html'%}
+    {%endfor%}
+
+    <div class="col-xs-12 col-sm-6">
+    {%if musician_list.count == 5%}
+        <a href="{%url 'things:musicians'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
+    {%else%}
+        <p><a href="{%url 'things:new_musician'%}">Create</a> new to fill this section up.</p>
+    {%endif%}
+    </div>
+</div>
+
+<div class="col-xs-12 generic_section">
+    <h2>Movie List</h2>
+    {% for obj in movie_list %}
+        {%include 'things/snippets/movies.html'%}
+    {%endfor%}
+
+    <div class="col-xs-12 col-sm-6">
+    {%if movie_list.count == 5%}
+        <a href="{%url 'things:movies'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
+    {%else%}
+        <p><a href="{%url 'things:new_movie'%}">Create</a> new to fill this section up.</p>
+    {%endif%}
+    </div>
 </div>
 
 {%endblock content%}
