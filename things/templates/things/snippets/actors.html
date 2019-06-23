@@ -17,7 +17,7 @@
                     {%if request.user == obj.owner%}
                     <span class="generic_rank">
                         {%if obj.rank%}
-                            <span class="glyphicon glyphicon-flash"></span> {{obj.get_rank_display}}
+                        <i class="fa fa-bolt" aria-hidden="true"></i> {{obj.get_rank_display}}
                         {%endif%}
                     </span>
                     {%endif%}

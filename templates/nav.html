@@ -12,49 +12,49 @@
         <ul class="nav navbar-nav" style="padding-top: 8px;">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Actors</a>
+                Actors <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">              
-                <li><a href="{%url 'things:new_actor'%}">Create New</a></li>
-                <li><a href="{%url 'things:actors'%}">View List</a></li>
+                <li><a href="{%url 'things:new_actor'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
+                <li><a href="{%url 'things:actors'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
                 </ul>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Vehicles</a>
+              Vehicles <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
               <ul class="dropdown-menu">              
-              <li><a href="{%url 'things:new_vehicle'%}">Create New</a></li>
-              <li><a href="{%url 'things:vehicles'%}">View List</a></li>
+              <li><a href="{%url 'things:new_vehicle'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
+              <li><a href="{%url 'things:vehicles'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Musicians</a>
+              Musicians <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
               <ul class="dropdown-menu">              
-              <li><a href="{%url 'things:new_musician'%}">Create New</a></li>
-              <li><a href="{%url 'things:musicians'%}">View List</a></li>
+              <li><a href="{%url 'things:new_musician'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
+              <li><a href="{%url 'things:musicians'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
               </ul>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Movies</a>
+                Movies <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">              
-                <li><a href="{%url 'things:new_movie'%}">Create New</a></li>
-                <li><a href="{%url 'things:movies'%}">View List</a></li>
+                <li><a href="{%url 'things:new_movie'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
+                <li><a href="{%url 'things:movies'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                TV</a>
+                TV <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">              
-                <li><a href="{%url 'things:new_tvshow'%}">Create New</a></li>
-                <li><a href="{%url 'things:tvshows'%}">View List</a></li>
+                <li><a href="{%url 'things:new_tvshow'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
+                <li><a href="{%url 'things:tvshows'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Anime</a>
+                Anime <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">              
-                <li><a href="{%url 'things:new_anime'%}">Create New</a></li>
+                <li><a href="{%url 'things:new_anime'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
                 <li><a href="{%url 'things:animes'%}">View List</a></li>
                 </ul>
             </li>
@@ -63,9 +63,9 @@
         <ul class="nav navbar-nav navbar-right" style="padding-top: 8px;margin-right:10px!important"> <!-- links for the logged in user -->
           {%if request.user.is_authenticated%}
             <li id="username">
-                <a href="{%url 'things:profile' request.user %}">{{request.user}}</a>
+                <a href="{%url 'things:profile' request.user %}"><i class="fa fa-user" aria-hidden="true"></i> {{request.user}}</a>
             </li>
-            <li class="right" id="logout"><a href="/logout/"><small>Logout</small></a></li>
+            <li class="right" id="logout"><a href="/logout/"><small>Logout <i class="fa fa-sign-out" aria-hidden="true"></i></small></a></li>
           {%else%}
             <li><p><a href="/login/">Login</a>/<a href="/join/">Register</a></p></li>
           {%endif%}

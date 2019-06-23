@@ -1,12 +1,12 @@
 {%extends "base.html"%}
-{% block title %}{{ formtitle | safe }} | {{block.super}}
+{% block title %}Delete | {{block.super}}
 {% endblock %}
 
 {%block content%}
 <form method="post">
     {% csrf_token %}
     <h2>Q: Are you sure?</h2>
-    <button type="button" class="back_button submit_button_back" onclick="window.location = document.referrer">Go back</button>
+    <button type="button" class="back_button submit_button_back" onclick="location.replace(document.referrer)">Go back</button>
     <button type="submit" class="delete_button fa_delete" id="button_confirm">Confirm</button>
 </form>
 {%endblock content%}

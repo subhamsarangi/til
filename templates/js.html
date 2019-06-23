@@ -14,4 +14,8 @@ if(document.URL.split('/')[3]=='actor' && document.URL.split('/')[6]=='edit'){
     });
     $('#image-clear_id+label').after('&nbsp;Or&nbsp;<br>');
 }
+if((document.URL.split('/')[3]=='add-movie') || (document.URL.split('/')[3]=='movie' && document.URL.split('/')[6]=='edit')){
+    $('#id_starring').chosen({rtl: true});
+    $('#id_starring_chosen').css('width','100%');
+}
 </script>

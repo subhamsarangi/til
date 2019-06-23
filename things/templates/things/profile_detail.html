@@ -18,7 +18,7 @@
 <div id="things_heading" class="col-xs-12">
     <h1>{{object.owner}}</h1>
     <p>{%if object.first_name%}{{object.first_name}}{%endif%} {%if object.last_name%}{{object.last_name}}{%endif%}</p>
-    <p>{%if object.dob%}Date of Birth: {{object.dob|date:"d M"}}{%endif%}</p>
+    <p>{%if object.dob%}<i class="fa fa-birthday-cake" aria-hidden="true"></i> Date of Birth: {{object.dob|date:"d M"}}{%endif%}</p>
     <p>Joined: {{object.timestamp|date:"d M Y"}}</p>
 </div>
 
@@ -26,52 +26,52 @@
 <br>
 <div id="generic_buttons" class="col-xs-12">
     <button class="generic_edit">
-        <a href='{% url "things:edit_profile" object.id object.slug %}'><span class="glyphicon glyphicon-edit"> </span> Edit Profile</a>
+        <a href='{% url "things:edit_profile" object.id object.slug %}'><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profile</a>
     </button>
     <button class="generic_edit">
-        <a href='{% url "things:edit_settings" object.id object.slug %}'><span class="glyphicon glyphicon-edit"></span> Edit Settings</a>
+        <a href='{% url "things:edit_settings" object.id object.slug %}'><i class="fa fa-wrench" aria-hidden="true"></i> Edit Settings</a>
     </button>
 </div>
 <br>
 {%endif%}
 
-<div class="col-xs-12">
-    <h2>Actors</h2>
+<div class="col-xs-12 generic_section">
+    <h2><i class="fa fa-star" aria-hidden="true"></i> Actors</h2>
     {% for obj in object.owner.actor_set.all %}
         {%include 'things/snippets/actors.html'%}
     {%empty%}
         <p>Nothing here.</p>
     {%endfor%}
-    <p><a href="{%url 'things:new_actor'%}">Add</a> an actor.</p>
+    <p class="col-xs-12"><a href="{%url 'things:new_actor'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an actor.</p>
 </div>
 
-<div class="col-xs-12">
-    <h2>Vehicles</h2>
+<div class="col-xs-12 generic_section">
+    <h2><i class="fa fa-car" aria-hidden="true"></i> Vehicles</h2>
     {% for obj in object.owner.vehicle_set.all %}
         {%include 'things/snippets/vehicles.html'%}
     {%empty%}
         <p>Nothing here.</p>
     {%endfor%}
-    <p><a href="{%url 'things:new_vehicle'%}">Add</a> a car or a bike.</p>
+    <p class="col-xs-12"><a href="{%url 'things:new_vehicle'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a car or a bike.</p>
 </div>
 
-<div class="col-xs-12">
-    <h2>Musicians</h2>
+<div class="col-xs-12 generic_section">
+    <h2><i class="fa fa-music" aria-hidden="true"></i> Musicians</h2>
     {% for obj in object.owner.musician_set.all %}
         {%include 'things/snippets/musicians.html'%}
     {%empty%}
         <p>Nothing here.</p>
     {%endfor%}
-    <p><a href="{%url 'things:new_musician'%}">Add</a> a band or a solo artist.</p>
+    <p class="col-xs-12"><a href="{%url 'things:new_musician'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a band or a solo artist.</p>
 </div>
-<div class="col-xs-12">
-    <h2>Movies</h2>
+<div class="col-xs-12 generic_section">
+    <h2><i class="fa fa-film" aria-hidden="true"></i> Movies</h2>
     {% for obj in object.owner.movie_set.all %}
         {%include 'things/snippets/movies.html'%}
     {%empty%}
         <p>Nothing here.</p>
     {%endfor%}
-    <p><a href="{%url 'things:new_movie'%}">Add</a> a movie you watched or want to watch.</p>
+    <p class="col-xs-12"><a href="{%url 'things:new_movie'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a movie you watched or want to watch.</p>
 </div>
 
 {%endblock content%}

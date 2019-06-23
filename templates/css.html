@@ -1,4 +1,25 @@
 <style>
+    {%load static%}
+    /*FONTS USED IN THIS WEBSITE*/
+    @font-face {
+        font-family: 'Roboto Thin';
+        src: url('{% static "fonts/Roboto-Thin.ttf" %}') format('truetype');
+    }
+    @font-face {
+        font-family: 'Roboto';
+        src: url('{% static "fonts/Roboto.ttf" %}') format('truetype');
+    }
+    @font-face {
+        font-family: 'Lemon';
+        src: url('{% static "fonts/Lemon.ttf" %}') format('truetype');
+    }
+    @font-face {
+        font-family: 'Comfortaa';
+        src: url('{% static "fonts/Comfortaa.ttf" %}') format('truetype');
+    }
+</style>
+
+<style>
     .navbar-header, .navbar-collapse{
         background: #121212;
         color: #4abaff;
@@ -15,14 +36,14 @@
         padding-right: 2px;
         padding-left: 2px;
         margin-top: 1em;
-        margin-bottom: 5em;
+        margin-bottom: 15em;
     }
     .icon-bar{
         background: #fff;
     }
     .nav>li>a:focus, .nav>li>a:hover, nav .open>a{
         text-decoration: none;
-        background: linear-gradient(to right,#827eda, #35338c)!important;
+        background: linear-gradient(to right,#827eda, #35338c);
     }
     .navbar-nav>li>a{
         font-size: 1.4em;
@@ -36,6 +57,12 @@
     .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
         background-color: #2621218a;
         color: #fff;
+    }
+    .navbar-fixed-top .navbar-collapse{
+        max-height: max-content;
+    }
+    #logout a:hover{
+        background: linear-gradient(to right,#973e5b, #754149)!important;
     }
     #ui-datepicker-div{
         transform: scale(1.35);
@@ -79,8 +106,33 @@
     .btn-success:hover{
         background: linear-gradient(to right,#4e7065, #223a3f);
     }
+    .chosen-choices{
+        background: rgba(111, 123, 233, 0.133)!important;
+    }
+    .chosen-choices input{
+        color: #fff!important;
+    }
+    .chosen-drop{
+        background: #2c2c35!important;
+        color: #fff;
+    }
+    .search-choice{
+        background: #0074a6!important;
+        outline: 0;
+        border-color: transparent;
+    }
+    .search-choice span{
+        color: #fff;
+    }
+    .result-selected{
+        color: #444!important;
+    }
 </style>
 <style>
+    html {
+        min-height: 100%;
+        position: relative;
+    }
     body{
         background: #222;
         color: #eee;
@@ -131,7 +183,7 @@
     }
     label{
         padding-bottom: 4px;
-        font-family: 'Comfortaa', cursive;
+        font-family: 'Comfortaa', sans-serif;
         font-size: 1.3em;
         color: blanchedalmond;
         letter-spacing: 1px;
@@ -159,7 +211,7 @@
     }
     #generic_heading{
         font-size: 4em;
-        font-family: 'Lemon', cursive;
+        font-family: 'Lemon', display;
         letter-spacing: 1px;
         color: transparent;
         background-color: white;
@@ -222,13 +274,11 @@
         position: absolute;
         top: 0;
         right: 0;
+        padding: 0 4px;
         font-size: 1.65em;
-        border-radius: 0 0 0 2em;
-        padding: 0 .1em .2em .35em;
-        background: #3c084d;
+        background: rgba(0, 0, 0, 0.133);
         color: #fc3;
-        font-style: italic;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Roboto Thin', Georgia, garamond, serif;
     }
     #generic_rank{
         padding: .25em .75em;
@@ -236,7 +286,7 @@
         color: #fc3;
         border: 1px solid #fc3;
         font-style: italic;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Roboto Thin', Georgia, garamond, serif;
         font-size: 1.9em;
         display: inline-block;
     }
@@ -258,7 +308,7 @@
     }
     .generic_country span{
         padding: 0 8px;
-        font-family: 'Comfortaa', cursive;
+        font-family: 'Comfortaa', display;
         font-size: 1.6em;
     }
     .generic_card_more{
@@ -268,7 +318,7 @@
         height: 6.5em;
         text-align: center;
         color: #8ba4b3!important;
-        font-family: 'Lemon', cursive;
+        font-family: 'Lemon', display;
         font-size: 2em;
     }
     .generic_card_more:hover{
@@ -323,7 +373,49 @@
     .subset_link{
 
     }
+    .back_button, .delete_button{
+        background: #15769f;
+        color: #fff;
+        font-family: 'Comfortaa';
+    }
     .generic_creator{
         color: #aaa;
+    }
+    .generic_section .col-xs-12 a, .add_more{
+        background: #15769f;
+        padding: 2px 4px;
+        line-height: 1.6em;
+        border-radius: .8em;
+    }
+    .generic_subset_link{
+        margin-left: 2em;
+        display: inline-block;
+        border-radius: 1em;
+        background: #3d5661;
+    }
+    .generic_subset_link h3{
+        font-size: 1.3em;
+    }
+    /*footer*/
+    footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: auto;
+        font-size: 14px;
+        width: 100%;
+        overflow: hidden;
+        padding: 10px 30px;
+        background: #2c2c35!important;
+        padding-top: 20px;
+    }
+    footer *{
+        text-align: center;
+    }
+    .fa-heart{
+        color: #9c88dc;
+    }
+    .fa-code{
+        color:deepskyblue;
     }
 </style>

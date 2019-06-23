@@ -57,6 +57,9 @@ class MusicianCreateForm(forms.ModelForm):
     class Meta:
         model = Musician
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
+        labels = {
+            'mtype': ('Type'),
+        }
 
 class MusicianUpdateForm(forms.ModelForm):
     class Meta:

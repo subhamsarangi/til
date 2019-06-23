@@ -25,7 +25,7 @@
     <a href=''>Follow</a>
 </button> -->
 <div class="col-xs-12">
-    <h2>Actors</h2>
+    <h2><i class="fa fa-star" aria-hidden="true"></i> Actors</h2>
     {% for obj in uprofile.owner.actor_set.all %}
         {%if not obj.is_private%}
         {%include 'things/snippets/actors.html'%}
@@ -36,7 +36,7 @@
 </div>
 
 <div class="col-xs-12">
-    <h2>Vehicle</h2>
+    <h2><i class="fa fa-car" aria-hidden="true"></i> Vehicle</h2>
     {% for obj in uprofile.owner.vehicle_set.all %}
         {%if not obj.is_private%}
         {%include 'things/snippets/vehicles.html'%}
@@ -47,7 +47,7 @@
 </div>
 
 <div class="col-xs-12">
-    <h2>Musician</h2>
+    <h2><i class="fa fa-music" aria-hidden="true"></i> Musician</h2>
     {% for obj in uprofile.owner.musician_set.all %}
         {%if not obj.is_private%}
         {%include 'things/snippets/musicians.html'%}
@@ -56,5 +56,16 @@
         <p>Nothing here</p>
     {%endfor%}
 </div>
+
+<div class="col-xs-12">
+        <h2><i class="fa fa-film" aria-hidden="true"></i> Movies</h2>
+        {% for obj in uprofile.owner.movies_set.all %}
+            {%if not obj.is_private%}
+            {%include 'things/snippets/movies.html'%}
+            {%endif%}
+        {%empty%}
+            <p>Nothing here</p>
+        {%endfor%}
+    </div>
 
 {%endblock content%}

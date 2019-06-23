@@ -20,62 +20,62 @@
 </div>
 
 <div class="col-xs-12 generic_section">
-    <h2>Actors</h2>
+    <h2><i class="fa fa-star" aria-hidden="true"></i> Actors</h2>
     {% for obj in actor_list %}
         {%include 'things/snippets/actors.html'%}
     {%endfor%}
 
     <div class="col-xs-12 col-sm-6">
     {%if actor_list.count == 5%}
-        <a href="{%url 'things:actors'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a href="{%url 'things:actors'%}" class="generic_card_more">View all <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
     {%else%}
-        <p><a href="{%url 'things:new_actor'%}">Create</a> new to fill this section up.</p>
+        <p><a href="{%url 'things:new_actor'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> new to fill this section up.</p>
     {%endif%}
     </div>
 </div>
 
 <div class="col-xs-12 generic_section">
-    <h2>Vehicle List</h2>
+    <h2><i class="fa fa-car" aria-hidden="true"></i> Vehicles</h2>
     {% for obj in vehicle_list %}
         {%include 'things/snippets/vehicles.html'%}
     {%endfor%}
 
     <div class="col-xs-12 col-sm-6">
     {%if vehicle_list.count == 5%}
-        <a href="{%url 'things:vehicles'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a href="{%url 'things:vehicles'%}" class="generic_card_more">View all <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
     {%else%}
-        <p><a href="{%url 'things:new_vehicle'%}">Create</a> new to fill this section up.</p>
+        <p><a href="{%url 'things:new_vehicle'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> new to fill this section up.</p>
     {%endif%}
     </div>
 </div>
 
 
 <div class="col-xs-12 generic_section">
-    <h2>Musician List</h2>
+    <h2><i class="fa fa-music" aria-hidden="true"></i> Musicians</h2>
     {% for obj in musician_list %}
         {%include 'things/snippets/musicians.html'%}
     {%endfor%}
 
     <div class="col-xs-12 col-sm-6">
     {%if musician_list.count == 5%}
-        <a href="{%url 'things:musicians'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a href="{%url 'things:musicians'%}" class="generic_card_more">View all <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
     {%else%}
-        <p><a href="{%url 'things:new_musician'%}">Create</a> new to fill this section up.</p>
+        <p><a href="{%url 'things:new_musician'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> new to fill this section up.</p>
     {%endif%}
     </div>
 </div>
 
 <div class="col-xs-12 generic_section">
-    <h2>Movie List</h2>
+    <h2><i class="fa fa-film" aria-hidden="true"></i> Movies</h2>
     {% for obj in movie_list %}
         {%include 'things/snippets/movies.html'%}
     {%endfor%}
 
     <div class="col-xs-12 col-sm-6">
     {%if movie_list.count == 5%}
-        <a href="{%url 'things:movies'%}" class="generic_card_more">View all <span class="glyphicon glyphicon-arrow-right"></span></a>
+        <a href="{%url 'things:movies'%}" class="generic_card_more">View all <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
     {%else%}
-        <p><a href="{%url 'things:new_movie'%}">Create</a> new to fill this section up.</p>
+        <p><a href="{%url 'things:new_movie'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> new to fill this section up.</p>
     {%endif%}
     </div>
 </div>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
+    {%load static%}
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
     <title>{% block title %}{% endblock %}LikeList</title>
@@ -22,11 +24,11 @@
     <meta property="og:image:height" content="200">
     <meta name="twitter:site" content="@likelist" />
     <meta name="twitter:card" content="summary_large_image" />
-    
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  
+    <!-- <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
     {%block loadcss%} {%endblock loadcss%}
-    <link href="https://fonts.googleapis.com/css?family=Lemon|Comfortaa|Roboto&display=swap" rel="stylesheet"> -->
 
     {% include 'css.html'%}
   </head>
@@ -45,8 +47,10 @@
     </div>    
     {% include 'footer.html' %}
 
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- <script src="{% static 'scripts/jquery.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap.js' %}"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {%block loadjs%} {%endblock loadjs%}
 
     {% include 'js.html'%}

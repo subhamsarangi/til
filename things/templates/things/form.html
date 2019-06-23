@@ -1,9 +1,12 @@
 {%extends "base.html"%}
+{%load static%}
 {% block title %}{{ formtitle | safe }} | {{block.super}}
 {% endblock %}
 
 {%block loadcss%}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+<!-- <link rel="stylesheet" href="{% static 'styles/jquery-ui.css' %}"> -->
+<link rel="stylesheet" href="{% static 'styles/chosen.css' %}">
 {%endblock loadcss%}
 
 {%block content%}
@@ -14,11 +17,14 @@
   {{ form.as_p }}
   <div class="col-xs-12">
     <button class="btn btn-success" type="Submit">
-      {{ formbutton | safe }}
+        <i class="fa fa-check" aria-hidden="true"></i>
+         {{ formbutton | safe }}
     </button>
   </div>
 </form>
 {%endblock content%}
 {%block loadjs%}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- <script src="{% static 'scripts/jquery-ui.js' %}"></script> -->
+<script src="{% static 'scripts/chosen.js' %}"></script>
 {%endblock loadjs%}
