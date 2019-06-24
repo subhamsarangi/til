@@ -59,7 +59,7 @@
 
 <div class="col-xs-12">
         <h2><i class="fa fa-film" aria-hidden="true"></i> Movies</h2>
-        {% for obj in uprofile.owner.movies_set.all %}
+        {% for obj in uprofile.owner.movie_set.all %}
             {%if not obj.is_private%}
             {%include 'things/snippets/movies.html'%}
             {%endif%}

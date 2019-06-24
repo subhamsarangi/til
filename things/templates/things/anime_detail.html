@@ -1,5 +1,4 @@
 {%extends "base.html"%}
-{%load static%}
 {% block title %}{{object.name}} | {{block.super}} {% endblock %}
 
 {%block metatag%}
@@ -10,7 +9,6 @@
     <meta property="og:description" content="{{object.remarks}}" />
     <meta property="og:url" content="{{object.get_absolute_url}}" />
     <meta name="twitter:domain" content="{{object.get_absolute_url}}" />
-    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
 {%endblock metatag%}
 
 {%block content%}
@@ -25,32 +23,27 @@
         {%endif%}
         <div id="generic_heading">{{object.name}}</div>
         <div id="generic_info">
-            <p class="generic_country"><i class="flag2x {{ object.country.flag_css }}"></i><span>{{object.get_country_display}}</span></p>
-
-            <p class="generic_card_info1"><span>{{object.get_mtype_display}}</span></p>
-
-            <p>{{object.languages}}</p>
-            <p>{{object.genres}}</p>
-
-            <p><a href="{%if object.insta%}{{object.insta}}{%endif%}" target='_blank'>{%if object.insta%}{{object.insta}}{%endif%}</a></p>
+            <h3 class="generic_card_info1"><i class="fa fa-birthday-cake" aria-hidden="true"></i> {{object.get_anime_type_display}}</h3>
+            <br>
+            <p class="generic_card_info2"><span>{{object.get_watch_status_display}}</span></p>
 
             <p>{%if object.is_private%}<span id="private">This is kept private</span>{%endif%}</p>
         </div>
     </div>
 
     <div class="col-xs-12 col-md-7" id="generic_img">
-        <img src="{{object.image.url}}" alt="{{object.name}}">
-        <p id='generic_img_link'><a href="{{object.image.url}}" target='_blank'><i class="fa fa-picture-o" aria-hidden="true"></i> To view the full image, click here</a></p>
+        <img src="{{object.poster}}" alt="{{object.name}}">
+        <p id='generic_img_link'><a href="{{object.poster}}" target='_blank'><i class="fa fa-picture-o" aria-hidden="true"></i> To view the full image, click here</a></p>
     </div>
 
     <div id="generic_extra" class="col-xs-12 ">
         {%if request.user == object.owner%}
         <div id="generic_buttons">
             <button class="generic_edit">
-                <a href='{% url "things:edit_musician" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
+                <a href='{% url "things:edit_anime" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
             </button>
             <button class="generic_edit">
-                <a href='{% url "things:del_musician" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
+                <a href='{% url "things:del_anime" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
             </button>
         </div>
         {%else%}

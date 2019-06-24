@@ -35,17 +35,48 @@ class HomeView(View):
                 ~Q(owner=self.request.user)&
                 Q(is_private=False)
                 ).order_by('?')[:5]
+            musician_list = Musician.objects.filter(
+                ~Q(owner=self.request.user)&
+                Q(is_private=False)
+                ).order_by('?')[:5]
+            movie_list = Movie.objects.filter(
+                ~Q(owner=self.request.user)&
+                Q(is_private=False)
+                ).order_by('?')[:5]
+            tv_list = TVShow.objects.filter(
+                ~Q(owner=self.request.user)&
+                Q(is_private=False)
+                ).order_by('?')[:5]
+            anime_list = Anime.objects.filter(
+                ~Q(owner=self.request.user)&
+                Q(is_private=False)
+                ).order_by('?')[:5]
         else:
             actor_list = Actor.objects.filter(
                 is_private=False
-                ).order_by('?')[:5]
+                ).distinct().order_by('?')[:5]
             vehicle_list = Vehicle.objects.filter(
+                is_private=False
+                ).order_by('?')[:5]
+            musician_list = Musician.objects.filter(
+                is_private=False
+                ).order_by('?')[:5]
+            movie_list = Movie.objects.filter(
+                is_private=False
+                ).order_by('?')[:5]
+            tv_list = TVShow.objects.filter(
+                is_private=False
+                ).order_by('?')[:5]
+            anime_list = Anime.objects.filter(
                 is_private=False
                 ).order_by('?')[:5]
         context = {
             'actor_list':actor_list,
             'vehicle_list':vehicle_list,
-
+            'musician_list':musician_list,
+            'movie_list':movie_list,
+            'tv_list':tv_list,
+            'anime_list':anime_list,
         }
         return render(request, self.template_name, context)
 
@@ -59,7 +90,7 @@ class ProfileView(DetailView, LoginRequiredMixin):
         if self.request.user.is_authenticated():
             return Profile.objects.filter(owner=self.request.user)
         else:
-            return Profile.objects.filter(owner=10)
+            return Profile.objects.filter(owner=-1)
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class=ProfileUpdateForm
