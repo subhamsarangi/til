@@ -123,7 +123,6 @@ class Actor(models.Model):
 
     class Meta:
         ordering = ('rank', 'name')
-        unique_together = ('owner', 'rank', 'gender')
 
     @property
     def is_female(self):
