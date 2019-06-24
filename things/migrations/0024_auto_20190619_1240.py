@@ -96,9 +96,4 @@ class Migration(migrations.Migration):
             name='youtubechannel',
             options={'ordering': ('rank', 'name')},
         ),
-        migrations.AlterField(
-            model_name='actor',
-            name='rank',
-            field=models.CharField(blank=True, choices=[('a', '1'), ('b', '2'), ('c', '3'), ('d', '4'), ('e', '5')], default=6, max_length=12, unique=True),
-        ),
     ]

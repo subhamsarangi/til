@@ -179,9 +179,9 @@ class ActorListView(ListView):
             slug = self.kwargs.get("slug")
             if slug:
                 if slug=='latest':
-                    queryset = Actor.objects.filter(is_private=False).order_by('-updated')
+                    queryset = Actor.objects.filter(is_private=False).order_by('-timestamp')
                 elif slug=='oldest':
-                    queryset = Actor.objects.filter(is_private=False).order_by('updated')
+                    queryset = Actor.objects.filter(is_private=False).order_by('timestamp')
                 else:
                     queryset = Actor.objects.filter(
                         Q(is_private=False) & 
