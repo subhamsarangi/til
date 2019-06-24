@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{% block title %}Anime | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Anime" />
+    <meta name="twitter:title" content="Anime" />
+    <meta name="description" content="Anime List"/>
+    <meta name="twitter:description" content="Anime List" />
+    <meta property="og:description" content="Anime List" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/animes/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/animes/" />
+{%endblock%}
+
+{%block content%}
+<div id="generic_list_heading" class="col-xs-12">
+	<h1>Anime List</h1>
+</div>
+{%include 'pagination1.html'%}
+
+{% for obj in object_list %}
+    {%include 'things/snippets/animes.html'%}
+{%empty%}
+    <p>Nothing here.</p>
+{%endfor%}
+<p class="col-xs-12"><a href="{%url 'things:new_anime'%}" class="add_more"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an Anime</p>
+
+{%include 'pagination2.html'%}
+
+{%endblock content%}

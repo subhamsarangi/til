@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+{% block title %}TV Shows | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="TV Shows" />
+    <meta name="twitter:title" content="TV Shows" />
+    <meta name="description" content="TV Show List"/>
+    <meta name="twitter:description" content="TV Show List" />
+    <meta property="og:description" content="TV Show List" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/tvshows/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/tvshows/" />
+{%endblock%}
+
+{%block content%}
+<div id="generic_list_heading" class="col-xs-12">
+	<h1>TV Show List</h1>
+</div>
+{%include 'pagination1.html'%}
+
+{% for obj in object_list %}
+    {%include 'things/snippets/tvshows.html'%}
+{%empty%}
+    <p>Nothing here.</p>
+{%endfor%}
+<p class="col-xs-12"><a href="{%url 'things:new_tvshow'%}" class="add_more"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a TV Show.</p>
+
+{%include 'pagination2.html'%}
+
+{%endblock content%}

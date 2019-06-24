@@ -58,14 +58,35 @@
 </div>
 
 <div class="col-xs-12">
-        <h2><i class="fa fa-film" aria-hidden="true"></i> Movies</h2>
-        {% for obj in uprofile.owner.movie_set.all %}
-            {%if not obj.is_private%}
-            {%include 'things/snippets/movies.html'%}
-            {%endif%}
-        {%empty%}
-            <p>Nothing here</p>
-        {%endfor%}
-    </div>
+    <h2><i class="fa fa-film" aria-hidden="true"></i> Movies</h2>
+    {% for obj in uprofile.owner.movie_set.all %}
+        {%if not obj.is_private%}
+        {%include 'things/snippets/movies.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
+    {%endfor%}
+</div>
+
+<div class="col-xs-12">
+    <h2><i class="fa fa-tv" aria-hidden="true"></i> Movies</h2>
+    {% for obj in uprofile.owner.tvshow_set.all %}
+        {%if not obj.is_private%}
+        {%include 'things/snippets/tvshow.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
+    {%endfor%}
+</div>
+<div class="col-xs-12">
+    <h2><i class="fa fa-play-circle" aria-hidden="true"></i> Anime</h2>
+    {% for obj in uprofile.owner.anime_set.all %}
+        {%if not obj.is_private%}
+        {%include 'things/snippets/anime.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
+    {%endfor%}
+</div>
 
 {%endblock content%}

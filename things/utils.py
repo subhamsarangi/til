@@ -83,10 +83,10 @@ movie_tv_genre = (
     ('oth', 'Others'),
 )
 watch_statuses = (
+    ('h', 'Watching'),
     ('w', 'Watched'),
     ('n', 'Not watched'),
     ('s', 'Started'),
-    ('h', 'Halfway through'),
 )
 site_types = (
     ('ed', 'Educational'),

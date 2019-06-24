@@ -71,21 +71,36 @@ class MovieCreateForm(forms.ModelForm):
         model = Movie
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
+    def __init__(self, user=None, *args, **kwargs):
+        super(MovieCreateForm, self).__init__(*args, **kwargs)
+        self.fields['starring'].queryset = Actor.objects.filter(owner=user)
+
 class MovieUpdateForm(forms.ModelForm):
     class Meta:
         model = Movie
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
+    def __init__(self, user=None, *args, **kwargs):
+        super(MovieUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['starring'].queryset = Actor.objects.filter(owner=user)
 
 class TVShowCreateForm(forms.ModelForm):
     class Meta:
         model = TVShow
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
+    def __init__(self, user=None, *args, **kwargs):
+        super(TVShowCreateForm, self).__init__(*args, **kwargs)
+        self.fields['starring'].queryset = Actor.objects.filter(owner=user)
+
 class TVShowUpdateForm(forms.ModelForm):
     class Meta:
         model = TVShow
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
+
+    def __init__(self, user=None, *args, **kwargs):
+        super(TVShowUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['starring'].queryset = Actor.objects.filter(owner=user)
 
 
 class AnimeCreateForm(forms.ModelForm):

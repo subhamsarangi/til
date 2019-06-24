@@ -178,11 +178,16 @@ class ActorListView(ListView):
         try:
             slug = self.kwargs.get("slug")
             if slug:
-                queryset = Actor.objects.filter(
-                    Q(is_private=False) & 
-                    (Q(name=slug) |
-                    Q(name__icontains=slug)).order_by('name')
-                )
+                if slug=='latest':
+                    queryset = Actor.objects.filter(is_private=False).order_by('-updated')
+                elif slug=='oldest':
+                    queryset = Actor.objects.filter(is_private=False).order_by('updated')
+                else:
+                    queryset = Actor.objects.filter(
+                        Q(is_private=False) & 
+                        (Q(name=slug) |
+                        Q(name__icontains=slug))
+                    ).order_by('name')
             else:
                 queryset = Actor.objects.filter(is_private=False).order_by('name')
             return queryset
@@ -354,6 +359,11 @@ class MovieCreateView(LoginRequiredMixin, CreateView):
         ctx['formbutton'] = 'Create'
         return ctx
 
+    def get_form_kwargs(self):
+        kwargs=super(MovieCreateView, self).get_form_kwargs()
+        kwargs['user']=self.request.user
+        return kwargs
+
 class MovieUpdateView(LoginRequiredMixin, UpdateView):
     form_class=MovieUpdateForm
     template_name='things/form.html'
@@ -369,6 +379,11 @@ class MovieUpdateView(LoginRequiredMixin, UpdateView):
         if not self.request.user.is_authenticated:
             raise Http404
         return Movie.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs=super(MovieUpdateView, self).get_form_kwargs()
+        kwargs['user']=self.request.user
+        return kwargs
 
 class MovieDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('things:Movies')
@@ -425,6 +440,11 @@ class TVShowCreateView(LoginRequiredMixin, CreateView):
         ctx['formbutton'] = 'Create'
         return ctx
 
+    def get_form_kwargs(self):
+        kwargs=super(TVShowCreateView, self).get_form_kwargs()
+        kwargs['user']=self.request.user
+        return kwargs
+
 
 class TVShowUpdateView(LoginRequiredMixin, UpdateView):
     form_class=TVShowUpdateForm
@@ -441,6 +461,11 @@ class TVShowUpdateView(LoginRequiredMixin, UpdateView):
         if not self.request.user.is_authenticated:
             raise Http404
         return TVShow.objects.filter(owner=self.request.user)
+
+    def get_form_kwargs(self):
+        kwargs=super(TVShowUpdateView, self).get_form_kwargs()
+        kwargs['user']=self.request.user
+        return kwargs
 
 class TVShowDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('things:TVShows')

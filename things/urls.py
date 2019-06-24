@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^user/(?P<user_slug>[\w-]+)/$', views.user_profile, name='user'),
 
     url(r'^actors/$', views.ActorListView.as_view(), name='actors'),
+    url(r'^actors/(?P<slug>[\w-]+)/$', views.ActorListView.as_view(), name='search_actors'),
     url(r'^add-actor/$', views.ActorCreateView.as_view(),name='new_actor'),
     url(r'^actor/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.ActorUpdateView.as_view(), name='edit_actor'),
     url(r'^actor/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.ActorDeleteView.as_view(),name='del_actor'),

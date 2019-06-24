@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
 {%endblock metatag%}
 
+{%block precontent%}
+<div id="generic_hero_img">
+    <div id="generic_heading">{{object.name}}</div>
+</div>
+{%endblock precontent%}
+
 {%block content%}
 <div class="col-xs-12">
     <div class="col-xs-12 col-md-5">
@@ -23,7 +29,6 @@
         </div>
         {%endif%}
         {%endif%}
-        <div id="generic_heading">{{object.name}}</div>
         <div id="generic_info">
             <h3 class="generic_card_info1">{%if object.dob%}<i class="fa fa-birthday-cake" aria-hidden="true"></i> {{object.dob}}{%endif%}</h3>
             <br>
@@ -58,24 +63,50 @@
 </div>
 
 <div class="generic_subset_section col-xs-12">
-    {%if object.movie_set.all.count == 0%}
-    <div class="col-xs-12" id="generic_empty">
-        <img src="/media/empty.png" alt="Ain't nothing in here." width="100%">
-        <h2>We couldn't find any Movies of this actor in your movie collection.</h2>
-        <h3><a class='add_more' href="{%url 'things:new_movie'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a></h3>
+    <div id="generic_subset_movie" class="col-xs-12">
+        {%if object.movie_set.all.count == 0%}
+        <div class="col-xs-12" id="generic_empty">
+            <img src="/media/empty.png" alt="Ain't nothing in here." width="100%">
+            <h2>No Movies of this actor</h2>
+            {%if request.user == object.owner%}
+            <h3><a class='add_more' href="{%url 'things:new_movie'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create a movie</a></h3>
+            {%endif%} 
+        </div>
+        {%else%}
+            <div class="col-xs-12">
+                <h2><i class="fa fa-film" aria-hidden="true"></i> Movies where {{object.name}} appears in</h2>
+            </div>
+        {%endif%}    
+        {% for movie in object.movie_set.all %}
+        <a class="generic_subset_link" href={{movie.get_absolute_url}}>
+            <div class="col-xs-12">
+                <h3>{{movie.name}} ({{movie.year}})</h3>
+            </div>
+        </a>
+        {%endfor%}
     </div>
-    {%else%}
-        <div class="col-xs-12">
-            <h2><i class="fa fa-film" aria-hidden="true"></i> Movies where {{object.name}} appears in</h2>
-        </div>
-    {%endif%}
 
-    {% for movie in object.movie_set.all %}
-    <a class="generic_subset_link" href={{movie.get_absolute_url}}>
-        <div class="col-xs-12">
-            <h3>{{movie.name}} ({{movie.year}})</h3>
+    <div id="generic_subset_tv" class="col-xs-12">
+        {%if object.tvshow_set.all.count == 0%}
+        <div class="col-xs-12" id="generic_empty">
+            <img src="/media/empty.png" alt="Ain't nothing in here." width="100%">
+            <h2>No TV Show of this actor</h2>
+            {%if request.user == object.owner%}
+            <h3><a class='add_more' href="{%url 'things:new_tvshow'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create a TV Show</a></h3>
+            {%endif%}
         </div>
-    </a>
-    {%endfor%}
+        {%else%}
+            <div class="col-xs-12">
+                <h2><i class="fa fa-tv" aria-hidden="true"></i> TV Shows where {{object.name}} appears in</h2>
+            </div>
+        {%endif%}
+        {% for tvshow in object.tvshow_set.all %}
+        <a class="generic_subset_link" href={{tvshow.get_absolute_url}}>
+            <div class="col-xs-12">
+                <h3>{{tvshow.name}} ({{tvshow.started_from}})</h3>
+            </div>
+        </a>
+        {%endfor%}
+    </div>
 </div>
 {%endblock content%}

@@ -1,11 +1,13 @@
 <script>
-$( ".datepicker" ).datepicker({
-    changeMonth: true, 
-    changeYear: true, 
-    dateFormat: "dd/mm/yy",
-    yearRange: "-90:+40",
-    defaultDate: new Date(1989, 0, 01)
-});
+if((document.URL.split('/')[3]=='add-actor') || (document.URL.split('/')[3]=='actor' && document.URL.split('/')[6]=='edit')){
+    $( ".datepicker" ).datepicker({
+        changeMonth: true, 
+        changeYear: true, 
+        dateFormat: "dd/mm/yy",
+        yearRange: "-90:+40",
+        defaultDate: new Date(1989, 0, 01)
+    });
+}
 if(document.URL.split('/')[3]=='actor' && document.URL.split('/')[6]=='edit'){
     $('#id_image').parent().find('a').after('<img style="height:300px;object-fit:cover;    object-position: 0 -60px;" src="'+$('#id_image').parent().find('a').attr('href')+'">'); //from anchor href to a img src
     $('#id_image').parent().css({
@@ -14,8 +16,16 @@ if(document.URL.split('/')[3]=='actor' && document.URL.split('/')[6]=='edit'){
     });
     $('#image-clear_id+label').after('&nbsp;Or&nbsp;<br>');
 }
-if((document.URL.split('/')[3]=='add-movie') || (document.URL.split('/')[3]=='movie' && document.URL.split('/')[6]=='edit')){
+if((document.URL.split('/')[3]=='add-movie') || (document.URL.split('/')[3]=='movie' && document.URL.split('/')[6]=='edit') || (document.URL.split('/')[3]=='add-tvshow') || (document.URL.split('/')[3]=='tvshow' && document.URL.split('/')[6]=='edit')){
     $('#id_starring').chosen({rtl: true});
     $('#id_starring_chosen').css('width','100%');
+}
+if(document.URL.split('/')[3]=='actors'){
+    $('#latest').click(function(){
+        window.location.href='/actors/latest';
+    });
+    $('#oldest').click(function(){
+        window.location.href='/actors/oldest';
+    });
 }
 </script>

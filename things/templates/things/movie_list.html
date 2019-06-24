@@ -1,0 +1,31 @@
+{%extends "base.html"%}
+{%load static%}
+{% block title %}Movies | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Movies" />
+    <meta name="twitter:title" content="Movies" />
+    <meta name="description" content="Movie List"/>
+    <meta name="twitter:description" content="Movie List" />
+    <meta property="og:description" content="Movie List" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/movies/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/movies/" />
+    <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
+{%endblock%}
+
+{%block content%}
+<div id="generic_list_heading" class="col-xs-12">
+	<h1>Movie List</h1>
+</div>
+{%include 'pagination1.html'%}
+
+{% for obj in object_list %}
+    {%include 'things/snippets/movies.html'%}
+{%empty%}
+    <p>Nothing here.</p>
+{%endfor%}
+<p class="col-xs-12"><a href="{%url 'things:new_movie'%}" class="add_more"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a movie.</p>
+
+{%include 'pagination2.html'%}
+
+{%endblock content%}

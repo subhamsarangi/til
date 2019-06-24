@@ -23,10 +23,11 @@
         {%endif%}
         <div id="generic_heading">{{object.name}}</div>
         <div id="generic_info">
-            <h3 class="generic_card_info1"><i class="fa fa-birthday-cake" aria-hidden="true"></i> {{object.get_anime_type_display}}</h3>
+            <p>Start Year: {{object.started_from}}</p>
+            <h3 class="generic_card_info1">{{object.get_anime_type_display}}</h3>
             <br>
             <p class="generic_card_info2"><span>{{object.get_watch_status_display}}</span></p>
-
+            <p>{{object.remarks}}</p>
             <p>{%if object.is_private%}<span id="private">This is kept private</span>{%endif%}</p>
         </div>
     </div>

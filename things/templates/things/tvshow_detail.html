@@ -23,8 +23,9 @@
         {%endif%}
         <div id="generic_heading">{{object.name}}</div>
         <div id="generic_info">
+            <p>Start Year: {{object.started_from}}</p>
             <p class="generic_card_info2"><span>{{object.get_watch_status_display}}</span></p>
-            <p class="generic_card_info2"><span>{{object.get_genre_display}}</span></p>
+            <p class="generic_card_info1"><span>{{object.get_genre_display}}</span></p>
             <p>{{object.remarks}}</p>
             <p>{%if object.is_private%}<span id="private">This is kept private</span>{%endif%}</p>
         </div>
@@ -39,10 +40,10 @@
         {%if request.user == object.owner%}
         <div id="generic_buttons">
             <button class="generic_edit">
-                <a href='{% url "things:edit_tv" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
+                <a href='{% url "things:edit_tvshow" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
             </button>
             <button class="generic_edit">
-                <a href='{% url "things:del_tv" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
+                <a href='{% url "things:del_tvshow" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
             </button>
         </div>
         {%else%}
@@ -57,12 +58,12 @@
     {%if object.starring.all.count == 0%}
     <div class="col-xs-12" id="generic_empty">
         <img src="/media/empty.png" alt="Ain't nothing in here." width="100%">
-        <h2>We couldn't find any Actors of this movie in your collection.</h2>
+        <h2>We couldn't find any Actors of this TV show in your collection.</h2>
         <h3><a class='add_more' href="{%url 'things:new_actor'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a></h3>
     </div>
     {%else%}
         <div class="col-xs-12">
-            <h2><i class="fa fa-film" aria-hidden="true"></i> actors who appeared in {{object.name}}</h2>
+            <h2><i class="fa fa-tv" aria-hidden="true"></i> Actors who appeared in {{object.name}}</h2>
         </div>
     {%endif%}
 
