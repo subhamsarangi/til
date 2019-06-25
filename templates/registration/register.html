@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-  <h1>Register</h1>
-  {% if form.errors %}
-  {{form.errors}}
-  <p>Please try again.</p>
-  {% endif %}
+<div id="auth_wrapper">
+    <div id="auth_header" class='col-xs-12 col-md-6'>
+      <img src="/media/logo.png" alt="Likelist logo">
+      <h1>LikeList</h1>
+    </div>
 
-  <form method="POST" enctype="multipart/form-data" class="col-xs-12 col-md-6">
+  <form method="POST" enctype="multipart/form-data" class="col-xs-12 col-md-6" id="auth_form">
+    <h2>Register</h2>
+    {% if form.errors %}
+    {{form.errors}}
+    <p>Please try again.</p>
+    {% endif %}
     {% csrf_token %}
     {{form.as_p}}
     <button type="Submit" class="btn btn-success">Sign Up</button>

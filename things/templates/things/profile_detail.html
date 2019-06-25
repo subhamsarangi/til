@@ -43,7 +43,7 @@
 {%endif%}
 
 
-<div class="col-xs-12 generic_section">
+<div class="col-xs-12 generic_section" id="actors_section">
     <h2><i class="fa fa-star" aria-hidden="true"></i> Actors <span>{{object.owner.actor_set.all.count}}</span></h2>
     {% for obj in object.owner.actor_set.all %}
         {%include 'things/snippets/actors.html'%}
@@ -53,19 +53,7 @@
     <p class="col-xs-12"><a href="{%url 'things:new_actor'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an actor.</p>
 </div>
 
-
-<div class="col-xs-12 generic_section">
-    <h2><i class="fa fa-car" aria-hidden="true"></i> Vehicles <span>{{object.owner.vehicle_set.all.count}}</span></h2>
-    {% for obj in object.owner.vehicle_set.all %}
-        {%include 'things/snippets/vehicles.html'%}
-    {%empty%}
-        <p>Nothing here.</p>
-    {%endfor%}
-    <p class="col-xs-12"><a href="{%url 'things:new_vehicle'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a car or a bike.</p>
-</div>
-
-
-<div class="col-xs-12 generic_section">
+<div class="col-xs-12 generic_section" id="musicians_section">
     <h2><i class="fa fa-music" aria-hidden="true"></i> Musicians <span>{{object.owner.musician_set.all.count}}</span></h2>
     {% for obj in object.owner.musician_set.all %}
         {%include 'things/snippets/musicians.html'%}
@@ -76,7 +64,7 @@
 </div>
 
 
-<div class="col-xs-12 generic_section">
+<div class="col-xs-12 generic_section" id="movies_section">
     <h2><i class="fa fa-film" aria-hidden="true"></i> Movies <span>{{object.owner.movie_set.all.count}}</span></h2>
     {% for obj in object.owner.movie_set.all %}
         {%include 'things/snippets/movies.html'%}
@@ -86,7 +74,7 @@
     <p class="col-xs-12"><a href="{%url 'things:new_movie'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a movie you watched or want to watch.</p>
 </div>
 
-<div class="col-xs-12 generic_section">
+<div class="col-xs-12 generic_section" id="tvshows_section">
     <h2><i class="fa fa-tv" aria-hidden="true"></i> TV Shows <span>{{object.owner.tvshow_set.all.count}}</span></h2>
     {% for obj in object.owner.tvshow_set.all %}
         {%include 'things/snippets/tvshows.html'%}
@@ -96,7 +84,7 @@
     <p class="col-xs-12"><a href="{%url 'things:new_tvshow'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a tv show you watched or want to watch.</p>
 </div>
 
-<div class="col-xs-12 generic_section">
+<div class="col-xs-12 generic_section" id="anime_section">
     <h2><i class="fa fa-play-circle" aria-hidden="true"></i> Animes <span>{{object.owner.anime_set.all.count}}</span></h2>
     {% for obj in object.owner.anime_set.all %}
         {%include 'things/snippets/animes.html'%}
@@ -105,5 +93,15 @@
     {%endfor%}
     <p class="col-xs-12"><a href="{%url 'things:new_anime'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an anime you watched or want to watch.</p>
 </div>
-    
+
+<div class="col-xs-12 generic_section" id="vehicle_section">
+    <h2><i class="fa fa-car" aria-hidden="true"></i> Vehicles <span>{{object.owner.vehicle_set.all.count}}</span></h2>
+    {% for obj in object.owner.vehicle_set.all %}
+        {%include 'things/snippets/vehicles.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+    <p class="col-xs-12"><a href="{%url 'things:new_vehicle'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a car or a bike.</p>
+</div>
+        
 {%endblock content%}

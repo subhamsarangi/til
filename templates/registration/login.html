@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-  <h1>Welcome Back to LikeList</h1>
+<div id="auth_wrapper">
+  <div id="auth_header" class='col-xs-12 col-md-6'>
+    <img src="/media/logo.png" alt="Likelist logo">
+    <h1>LikeList</h1>
+  </div>
+
+  <form method="POST" class='col-xs-12 col-md-6' enctype="multipart/form-data" id="auth_form">
+    <h2>Sign in</h2>
   {% if form.errors %}
   {{form.errors}}
     <p>Password/Username doesn't match.</p>
   {% endif %}
-
-  <form method="POST" class='col-xs-12 col-md-6' enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <button type="Submit" class="btn btn-success">Login</button>

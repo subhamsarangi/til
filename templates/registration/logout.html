@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>You have logged yourself out.</h1>
-<h3><a href="/login">Here</a>,Login again if you'd like.</h3>
-<h3>Or Create a <a href="/join">new Account</a></h3>
+<div id="auth_wrapper">
+    <h1>You have logged yourself out.</h1>
+    <h2><a href="/login">Here</a>, sign in again if you'd like.</h2>
+    <h2>Or Create a <a href="/join">new Account</a> for free</h2>
+</div>
 {% endblock %}
 {%block loadjs%}
 {%endblock loadjs%}

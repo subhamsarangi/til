@@ -1,5 +1,5 @@
 <nav>
-    <div class="navbar navbar-fixed-top" style="background: rgba(253, 249, 244, 0.944); box-shadow: none;">
+    <div class="navbar navbar-fixed-top" style= "    box-shadow: 3px -2px 10px 1px #0000004f;">
       <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sitenav">
             <span class="icon-bar"></span>
@@ -60,14 +60,14 @@
             </li>
         </ul>
   
-        <ul class="nav navbar-nav navbar-right" style="padding-top: 8px;margin-right:10px!important"> <!-- links for the logged in user -->
+        <ul class="nav navbar-nav navbar-right"> <!-- links for the logged in user -->
           {%if request.user.is_authenticated%}
             <li id="username">
                 <a href="{%url 'things:profile' request.user %}"><i class="fa fa-user" aria-hidden="true"></i> {{request.user}}</a>
             </li>
             <li class="right" id="logout"><a href="/logout/"><small>Logout <i class="fa fa-sign-out" aria-hidden="true"></i></small></a></li>
           {%else%}
-            <li><p><a href="/login/">Login</a>/<a href="/join/">Register</a></p></li>
+            <li><p><a href="/login/">Login</a>&nbsp;<a href="/join/">Register</a></p></li>
           {%endif%}
         </ul>
       </div>

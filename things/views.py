@@ -64,7 +64,7 @@ class HomeView(View):
             movie_list = Movie.objects.filter(
                 is_private=False
                 ).order_by('?')[:5]
-            tv_list = TVShow.objects.filter(
+            tvshow_list = TVShow.objects.filter(
                 is_private=False
                 ).order_by('?')[:5]
             anime_list = Anime.objects.filter(
@@ -75,7 +75,7 @@ class HomeView(View):
             'vehicle_list':vehicle_list,
             'musician_list':musician_list,
             'movie_list':movie_list,
-            'tv_list':tv_list,
+            'tvshow_list':tvshow_list,
             'anime_list':anime_list,
         }
         return render(request, self.template_name, context)

@@ -20,9 +20,16 @@
 </style>
 
 <style>
+    nav{
+        margin-bottom: 2.75em;
+    }
     .navbar-header, .navbar-collapse{
-        background: #121212;
+        background: #0b0d18;
         color: #4abaff;
+    }
+    .navbar-header{
+        position: relative;
+        z-index: 1;
     }
     .navbar-brand{
         padding: 0;
@@ -60,6 +67,23 @@
     }
     .navbar-fixed-top .navbar-collapse{
         max-height: max-content;
+    }
+    .navbar-right{
+        padding-top: 8px;
+        padding-left:10px;
+        letter-spacing: 1px;
+        word-spacing: 2px;
+        margin-right:10px!important;
+    }
+    .navbar-right a{
+        font-size: 1.35em;
+        background: #4a575c;
+        padding: 1px 4px;
+    }
+    .navbar-right a:hover{
+        background: #15769f;
+        padding: 1px 4px;
+        text-decoration: none;
     }
     #logout a:hover{
         background: linear-gradient(to right,#973e5b, #754149)!important;
@@ -243,6 +267,22 @@
         overflow: hidden;
         border:1px solid rgb(115, 216, 247);
     }
+    #musicians_section .generic_card {
+        border:1px solid rgb(200, 156, 241);
+    }
+    #movies_section .generic_card {
+        border:1px solid rgb(247, 115, 115);
+    }
+    #tvshows_section .generic_card {
+        border:1px solid rgb(115, 124, 247);
+    }
+    #anime_section .generic_card {
+        border:1px solid rgb(153, 247, 115);
+    }
+    #vehicles_section .generic_card {
+        border:1px solid rgb(166, 167, 168);
+    }
+
     .generic_card_text{
         display: flex;
         flex-flow: column;
@@ -462,6 +502,7 @@
        padding: 2px 5px;
        color: #fff;
     }
+
     .generic_subset_link{
         margin-left: 2em;
         display: inline-block;
@@ -516,6 +557,43 @@
         z-index: 2;
         overflow: hidden;
     }
+    #auth_wrapper{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #auth_header{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 2em;
+    }
+    #auth_form{
+        margin: 0;
+        background: #333;
+        padding: 1.75em;
+        margin-top: 1em;
+        border-radius: .5em;
+    }
+    #auth_wrapper h2{
+        text-align: left;
+        font-size: 1.5em;
+        color: #eee;
+    }
+    #auth_wrapper a{
+        text-decoration: underline;
+        color: #2fe;
+    }
+    #auth_header img{
+        width: 2.75em;
+        height: 2.75em;
+        margin-right: .5em;
+    }
+    #auth_header h1{
+        font-family: 'Roboto Thin';
+        font-weight: bold;
+    }
 
     /*footer*/
     footer {
@@ -540,6 +618,16 @@
         color:deepskyblue;
     }
     @media only screen and (max-width:420px){
+        .navbar-header:before{  
+            position: absolute;
+            top: 7%;
+            left: 33%;
+            content: 'LikeList';
+            z-index: 2;
+            font-size: 3em;
+            color: #c5f9fd;
+            font-family: 'Roboto Thin';
+        }
         .generic_section>h2:before{
             width: 20%;
         }
