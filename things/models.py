@@ -28,6 +28,17 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return reverse('things:profile', kwargs={'slug':self.slug})
 
+    def get_initials(self):
+        initial =''
+        if not (self.first_name and self.last_name):
+            initial=self.owner.username[0]
+        else:
+            if self.first_name:
+                initial+=self.first_name[0]
+            if self.last_name:
+                initial+=self.last_name[0]
+        return initial
+
     class Meta:
         ordering = ('owner','timestamp',)
 
