@@ -20,14 +20,6 @@
             </li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Vehicles <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu">              
-              <li><a href="{%url 'things:new_vehicle'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
-              <li><a href="{%url 'things:vehicles'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               Musicians <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
               <ul class="dropdown-menu">              
               <li><a href="{%url 'things:new_musician'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
@@ -55,7 +47,15 @@
                 Anime <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu">              
                 <li><a href="{%url 'things:new_anime'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
-                <li><a href="{%url 'things:animes'%}">View List</a></li>
+                <li><a href="{%url 'things:animes'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Vehicles <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu">              
+                <li><a href="{%url 'things:new_vehicle'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create New</a></li>
+                <li><a href="{%url 'things:vehicles'%}"><i class="fa fa-list" aria-hidden="true"></i> View List</a></li>
                 </ul>
             </li>
         </ul>
@@ -67,7 +67,7 @@
             </li>
             <li class="right" id="logout"><a href="/logout/"><small>Logout <i class="fa fa-sign-out" aria-hidden="true"></i></small></a></li>
           {%else%}
-            <li><p><a href="/login/">Login</a>&nbsp;<a href="/join/">Register</a></p></li>
+            <li id="auth"><p><a href="/login/">Login</a>&nbsp;<a href="/join/">Register</a></p></li>
           {%endif%}
         </ul>
       </div>

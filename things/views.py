@@ -43,7 +43,7 @@ class HomeView(View):
                 ~Q(owner=self.request.user)&
                 Q(is_private=False)
                 ).order_by('?')[:5]
-            tv_list = TVShow.objects.filter(
+            tvshow_list = TVShow.objects.filter(
                 ~Q(owner=self.request.user)&
                 Q(is_private=False)
                 ).order_by('?')[:5]

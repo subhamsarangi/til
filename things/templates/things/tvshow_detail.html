@@ -25,7 +25,11 @@
         <div id="generic_info">
             <p>Start Year: {{object.started_from}}</p>
             <p class="generic_card_info2"><span>{{object.get_watch_status_display}}</span></p>
-            <p class="generic_card_info1"><span>{{object.get_genre_display}}</span></p>
+            <p class="generic_card_info1">
+            {%for g in object.genre.all%}
+                <span class="generic_genre">{{g.name}}</span>
+            {%endfor%}
+            </p>
             <p>{{object.remarks}}</p>
             <p>{%if object.is_private%}<span id="private">This is kept private</span>{%endif%}</p>
         </div>

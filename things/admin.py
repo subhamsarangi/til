@@ -21,6 +21,9 @@ admin.site.register(FitnessPerson)
 admin.site.register(FemaleModel)
 admin.site.register(AdultModel)
 
+admin.site.register(VideoGenre)
+admin.site.register(AudioGenre)
+
 admin.site.register(Movie)
 admin.site.register(TVShow)
 admin.site.register(Anime)

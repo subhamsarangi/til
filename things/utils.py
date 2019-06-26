@@ -33,7 +33,6 @@ def image_modification_tool(imgobj, bw):
             img.save(image_file, 'JPEG', quality=95)
         imgobj.file = image_file
 
-
 top_five = (
     ('a', '1'),
     ('b', '2'),
@@ -41,52 +40,12 @@ top_five = (
     ('d', '4'),
     ('e', '5'),
 )
-langs = (
-    ('en', 'English'),
-    ('bn', 'Bangla'),
-    ('hi', 'Hindi'),
-    ('de', 'German'),
-    ('it', 'Italian'),
-    ('ja', 'Japanese'),
-    ('pe', 'Persian'),
-    ('sv', 'Swedish'),
-    ('fr', 'French'),
-    ('ta', 'Tamil'),
-    ('ka', 'Kannada'),
-    ('oth', 'Others'),
-)
 
-movie_tv_genre = (
-    ('dra', 'Drama'),
-    ('scf', 'Sci-Fi'),
-    ('thr', 'Thriller'),
-    ('adv', 'Adventure'),
-    ('ron', 'Romance'),
-    ('co', 'Comedy'),
-    ('rcm', 'Romcom'),
-    ('fan', 'Fantasy'),
-    ('sup', 'Superhero'),
-    ('psy', 'Psychological Thriller'),
-    ('lgl', 'Legal Drama'),
-    ('mld', 'Military Drama'),
-    ('mlt', 'Milirary Thriller'),
-    ('his', 'Historical Fiction'),
-    ('bio', 'Biopic'),
-    ('doc', 'Documentary'),
-    ('med', 'Medical Drama'),
-    ('cor', 'Corporate'),
-    ('dys', 'Dystopia'),
-    ('uto', 'Utopia'),
-    ('exp', 'Experimental'),
-    ('noi', 'Film Noir'),
-    ('mus', 'Musical'),
-    ('oth', 'Others'),
-)
 watch_statuses = (
-    ('h', 'Watching'),
-    ('w', 'Watched'),
-    ('n', 'Not watched'),
-    ('s', 'Started'),
+    ('h', 'Waiting For Next Release'),
+    ('w', 'Completed'),
+    ('s', 'Started Watching'),
+    ('n', 'Wish to Watch'),
 )
 site_types = (
     ('ed', 'Educational'),
@@ -100,7 +59,7 @@ site_types = (
     ('mo','Money'),
 )
 alphasymspace = RegexValidator(
-    r"^[a-zA-Z0-9 %&#?!;.,'+/*-]*$", "Alphanumeric characters, space and %&#?!;.,'+/*- are allowed.")
+    r"^[a-zA-Z0-9 %&#?!();.,'+/*-]*$", "Alphanumeric characters, space and %&#?!;.,'+/*- are allowed.")
 alphanumspacedash = RegexValidator(
     r'^[a-zA-Z0-9 -]*$', 'Alphanumeric characters, dash & space allowed.')
 alphanumspacedashq = RegexValidator(

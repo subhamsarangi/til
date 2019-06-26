@@ -84,7 +84,7 @@
     <p class="col-xs-12"><a href="{%url 'things:new_tvshow'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a tv show you watched or want to watch.</p>
 </div>
 
-<div class="col-xs-12 generic_section" id="anime_section">
+<div class="col-xs-12 generic_section" id="animes_section">
     <h2><i class="fa fa-play-circle" aria-hidden="true"></i> Animes <span>{{object.owner.anime_set.all.count}}</span></h2>
     {% for obj in object.owner.anime_set.all %}
         {%include 'things/snippets/animes.html'%}
@@ -94,7 +94,7 @@
     <p class="col-xs-12"><a href="{%url 'things:new_anime'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an anime you watched or want to watch.</p>
 </div>
 
-<div class="col-xs-12 generic_section" id="vehicle_section">
+<div class="col-xs-12 generic_section" id="vehicles_section">
     <h2><i class="fa fa-car" aria-hidden="true"></i> Vehicles <span>{{object.owner.vehicle_set.all.count}}</span></h2>
     {% for obj in object.owner.vehicle_set.all %}
         {%include 'things/snippets/vehicles.html'%}

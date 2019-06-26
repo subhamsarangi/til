@@ -116,12 +116,12 @@ class Actor(models.Model):
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedash])
     gender          =models.CharField(choices=genders, blank=False, max_length=12, default='o')
     country         =CountryField(blank_label='(select country)')
-    image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     dob             =models.DateField(blank=False, default='01/01/89')
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     insta           =models.URLField(max_length=200, blank=True, null=True)
-    is_private      =models.BooleanField(default=False)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -155,11 +155,11 @@ class Director(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedash])
     country         =CountryField(blank_label='(select country)')
+    is_active	    =models.BooleanField(default=True)
+    image_url        =models.URLField(max_length=200, blank=True, null=True)
+    remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
-    remarks         =models.TextField(blank=True, null=True)
-    image_url        =models.URLField(max_length=200, blank=True, null=True)
-    is_active	    =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -193,11 +193,11 @@ class Writer(models.Model):
     genres          =models.CharField(blank=False, max_length=80)
     languages       =models.CharField(blank=False, max_length=80)
     country         =CountryField(blank_label='(select country)')
+    is_active	    =models.BooleanField(default=True)
+    image_url        =models.URLField(max_length=200, blank=True, null=True)
+    remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
-    image_url        =models.URLField(max_length=200, blank=True, null=True)
-    is_active	    =models.BooleanField(default=False)
-    remarks         =models.TextField(blank=True, null=True)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -222,11 +222,11 @@ class Artist(models.Model):
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedashq])
     country         =CountryField(blank_label='(select country)')
     genres          =models.CharField(blank=False, max_length=80)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
-    is_active	    =models.BooleanField(default=False)
+    is_active	    =models.BooleanField(default=True)
     image_url       =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -263,12 +263,12 @@ class Musician(models.Model):
     country         =CountryField(blank_label='(select country)')
     languages       =models.CharField(blank=False, max_length=80)
     genres          =models.CharField(blank=False, max_length=80)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
-    is_active	    =models.BooleanField(default=False)
+    is_active	    =models.BooleanField(default=True)
     image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     insta           =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -297,11 +297,11 @@ class Dancer(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedashq])
     country         =CountryField(blank_label='(select country)')
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     insta           =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -336,11 +336,11 @@ class SportsPerson(models.Model):
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedashq])
     gender          =models.CharField(choices=genders, blank=False, max_length=20)
     country         =CountryField(blank_label='(select country)')
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     insta           =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -354,6 +354,7 @@ class SportsPerson(models.Model):
     class Meta:
         ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
+        verbose_name_plural = "Sports Persons"
 
     @property
     def title(self):
@@ -372,11 +373,11 @@ class FitnessPerson(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedashq])
     gender          =models.CharField(choices=genders, blank=False, max_length=20)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image_url       =models.URLField(max_length=300, blank=True, null=True)
     insta           =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -390,6 +391,7 @@ class FitnessPerson(models.Model):
     class Meta:
         ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
+        verbose_name_plural = "Fitness Persons"
 
     @property
     def title(self):
@@ -405,11 +407,11 @@ class FemaleModel(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedashq])
     country         =CountryField(blank_label='(select country)')
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image           =models.ImageField(upload_to=update_image_file, blank=True, null=True)
     insta           =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -423,6 +425,7 @@ class FemaleModel(models.Model):
     class Meta:
         ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
+        verbose_name_plural = "Female Models"
 
     @property
     def title(self):
@@ -436,10 +439,10 @@ class AdultModel(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphanumspacedashq])
     real_name       =models.CharField(max_length=50, blank=True, null=True, validators=[alphanumspacedashq])
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image_url        =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -453,24 +456,48 @@ class AdultModel(models.Model):
     class Meta:
         ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
+        verbose_name_plural = "Adult Models"
 
     @property
     def title(self):
         return self.name
 
+class VideoGenre(models.Model):
+    name            =models.CharField(max_length=80, blank=False, validators=[alphasymspace])
+    timestamp       =models.DateTimeField(auto_now_add=True)
+    updated         =models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name_plural = "Video Genres"
+
+class AudioGenre(models.Model):
+    name            =models.CharField(max_length=80, blank=False, validators=[alphasymspace])
+    timestamp       =models.DateTimeField(auto_now_add=True)
+    updated         =models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name_plural = "Audio Genres"
 
 class Movie(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
+    genre           =models.ManyToManyField(VideoGenre, blank=False)
     watch_status    =models.CharField(choices=watch_statuses, max_length=20, blank=False, null=True)
-    genre           =models.CharField(choices=movie_tv_genre, blank=False, max_length=20)
+    poster          =models.URLField(max_length=200, blank=True, null=True)
+    starring        =models.ManyToManyField(Actor, blank=True)
+    director        =models.ForeignKey(Director, on_delete=models.CASCADE, null=True, blank=True)
     year            =models.IntegerField(blank=False,null=True, validators=[positivenum])
+    remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
-    poster          =models.URLField(max_length=200, blank=True, null=True)
-    director        =models.ForeignKey(Director, on_delete=models.CASCADE, null=True, blank=True)
-    starring        =models.ManyToManyField(Actor, blank=True)
-    remarks         =models.TextField(blank=True, null=True)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -493,14 +520,14 @@ class Movie(models.Model):
 class TVShow(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
+    genre           =models.ManyToManyField(VideoGenre, blank=False)
     watch_status    =models.CharField(choices=watch_statuses, max_length=20, blank=False, null=True)
-    genre           =models.CharField(choices=movie_tv_genre, blank=False, max_length=20)
     starring        =models.ManyToManyField(Actor, blank=True)
+    poster          =models.URLField(max_length=200, blank=True, null=True)
     started_from    =models.IntegerField(blank=False,null=True, validators=[positivenum])
+    remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
-    poster          =models.URLField(max_length=200, blank=True, null=True)
-    remarks         =models.TextField(blank=True, null=True)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -514,6 +541,7 @@ class TVShow(models.Model):
     class Meta:
         ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
+        verbose_name_plural = "TV Shows"
 
     @property
     def title(self):
@@ -527,13 +555,13 @@ class Anime(models.Model):
     )
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
-    watch_status    =models.CharField(choices=watch_statuses, max_length=20, blank=False)
     anime_type      =models.CharField(choices=anime_types, blank=False, max_length=20)
+    watch_status    =models.CharField(choices=watch_statuses, max_length=20, blank=False)
+    poster          =models.URLField(max_length=200, blank=True, null=True)
     started_from    =models.IntegerField(blank=False,null=True, validators=[positivenum])
+    remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
-    poster          =models.URLField(max_length=200, blank=True, null=True)
-    remarks         =models.TextField(blank=True, null=True)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -572,10 +600,10 @@ class Book(models.Model):
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
     read_status     =models.CharField(choices=read_statuses, max_length=20, blank=False)
     source          =models.CharField(choices=sources, blank=False, max_length=40)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     cover           =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -599,10 +627,10 @@ class Song(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=80, blank=False, validators=[alphasymspace])
     singer          =models.ForeignKey(Musician, on_delete=models.CASCADE, blank=False)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     cover_url       =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -636,9 +664,9 @@ class YoutubeChannel(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
     channel_type    =models.CharField(choices=channel_types, max_length=20, blank=False)
+    remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
-    remarks         =models.TextField(blank=True, null=True)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -652,6 +680,7 @@ class YoutubeChannel(models.Model):
     class Meta:
         ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank')
+        verbose_name_plural = "Youtube Channels"
 
     @property
     def title(self):
@@ -662,10 +691,10 @@ class Application(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=40, blank=False, validators=[alphasymspace])
     app_type        =models.CharField(choices=site_types, max_length=20, blank=False)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     inactive        =models.BooleanField(default=False)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -690,10 +719,10 @@ class Website(models.Model):
     link_url        =models.URLField(max_length=300, blank=True, null=True)
     name            =models.CharField(max_length=40, blank=False, validators=[alphasymspace])
     site_type       =models.CharField(choices=site_types, max_length=20, blank=False)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     inactive        =models.BooleanField(default=False)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -735,10 +764,10 @@ class Place(models.Model):
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
     place_type      =models.CharField(choices=place_types, max_length=20, blank=False)
     travel_status   =models.CharField(choices=travel_statuses, blank=False, max_length=40)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image_url       =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -783,10 +812,10 @@ class Food(models.Model):
     cuisine        =models.CharField(choices=cuisines, max_length=20, blank=False)
     want_to_eat     =models.BooleanField(default=False)
     can_cook        =models.BooleanField(default=False)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image_url       =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
@@ -818,10 +847,10 @@ class Vehicle(models.Model):
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
     vehicle_type    =models.CharField(choices=vehicle_types, max_length=20, blank=False)
     company         =models.CharField(max_length=50, blank=True)
-    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
-    is_private      =models.BooleanField(default=False)
     image_url       =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
+    rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
+    is_private      =models.BooleanField(default=False)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)
