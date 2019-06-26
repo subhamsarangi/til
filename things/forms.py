@@ -106,12 +106,12 @@ class TVShowUpdateForm(forms.ModelForm):
 class AnimeCreateForm(forms.ModelForm):
     class Meta:
         model = Anime
-        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+        exclude = ['owner', 'slug', 'timestamp', 'updated','anime_type',]
 
 class AnimeUpdateForm(forms.ModelForm):
     class Meta:
         model = Anime
-        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+        exclude = ['owner', 'slug', 'timestamp', 'updated','anime_type',]
 
 
 class DirectorCreateForm(forms.ModelForm):

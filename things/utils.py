@@ -41,11 +41,17 @@ top_five = (
     ('e', '5'),
 )
 
-watch_statuses = (
-    ('h', 'Waiting For Next Release'),
-    ('w', 'Completed'),
-    ('s', 'Started Watching'),
-    ('n', 'Wish to Watch'),
+mv_watch_statuses = (
+    ('h', 'Watched it'),
+    ('w', 'Watched it multiple times'),
+    ('s', 'Watching it now'),
+    ('n', 'Wish to watch it someday'),
+)
+tv_watch_statuses = (
+    ('h', 'Waiting for next release'),
+    ('w', 'Completed all seasons'),
+    ('s', 'Started watching'),
+    ('n', 'Wish to start it someday'),
 )
 site_types = (
     ('ed', 'Educational'),

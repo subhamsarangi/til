@@ -490,7 +490,7 @@ class Movie(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
     genre           =models.ManyToManyField(VideoGenre, blank=False)
-    watch_status    =models.CharField(choices=watch_statuses, max_length=20, blank=False, null=True)
+    watch_status    =models.CharField(choices=mv_watch_statuses, max_length=20, blank=False, null=True)
     poster          =models.URLField(max_length=200, blank=True, null=True)
     starring        =models.ManyToManyField(Actor, blank=True)
     director        =models.ForeignKey(Director, on_delete=models.CASCADE, null=True, blank=True)
@@ -521,10 +521,9 @@ class TVShow(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
     genre           =models.ManyToManyField(VideoGenre, blank=False)
-    watch_status    =models.CharField(choices=watch_statuses, max_length=20, blank=False, null=True)
+    watch_status    =models.CharField(choices=tv_watch_statuses, max_length=20, blank=False, null=True)
     starring        =models.ManyToManyField(Actor, blank=True)
     poster          =models.URLField(max_length=200, blank=True, null=True)
-    started_from    =models.IntegerField(blank=False,null=True, validators=[positivenum])
     remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
@@ -555,10 +554,9 @@ class Anime(models.Model):
     )
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
-    anime_type      =models.CharField(choices=anime_types, blank=False, max_length=20)
-    watch_status    =models.CharField(choices=watch_statuses, max_length=20, blank=False)
+    anime_type      =models.CharField(choices=anime_types, blank=True, default='s',max_length=20)
+    watch_status    =models.CharField(choices=tv_watch_statuses, max_length=20, blank=False)
     poster          =models.URLField(max_length=200, blank=True, null=True)
-    started_from    =models.IntegerField(blank=False,null=True, validators=[positivenum])
     remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)
     is_private      =models.BooleanField(default=False)
@@ -575,6 +573,7 @@ class Anime(models.Model):
     class Meta:
         ordering = ('rank', 'name',)
         unique_together = ('owner', 'rank', 'anime_type')
+        verbose_name_plural = "Anime Series"
 
     @property
     def title(self):

@@ -135,7 +135,7 @@ class ActorCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(ActorCreateView, self).get_context_data(**kwargs)
-        ctx['formtitle'] = 'Add new Actor'
+        ctx['formtitle'] = 'Add a new Actor'
         ctx['formbutton'] = 'Create'
         return ctx
 
@@ -212,7 +212,7 @@ class VehicleCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(VehicleCreateView, self).get_context_data(**kwargs)
-        ctx['formtitle'] = 'Add new Vehicle'
+        ctx['formtitle'] = 'Add a new Vehicle'
         ctx['formbutton'] = 'Create'
         return ctx
 
@@ -283,7 +283,7 @@ class MusicianCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(MusicianCreateView, self).get_context_data(**kwargs)
-        ctx['formtitle'] = 'Add new Musician'
+        ctx['formtitle'] = 'Add a new Musician'
         ctx['formbutton'] = 'Create'
         return ctx
 
@@ -355,7 +355,7 @@ class MovieCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(MovieCreateView, self).get_context_data(**kwargs)
-        ctx['formtitle'] = 'Add new Movie'
+        ctx['formtitle'] = 'Add a new Movie'
         ctx['formbutton'] = 'Create'
         return ctx
 
@@ -436,7 +436,7 @@ class TVShowCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(TVShowCreateView, self).get_context_data(**kwargs)
-        ctx['formtitle'] = 'Add new TVShow'
+        ctx['formtitle'] = 'Add a new TVShow'
         ctx['formbutton'] = 'Create'
         return ctx
 
@@ -518,7 +518,7 @@ class AnimeCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(AnimeCreateView, self).get_context_data(**kwargs)
-        ctx['formtitle'] = 'Add new Anime'
+        ctx['formtitle'] = 'Add a new Anime Series'
         ctx['formbutton'] = 'Create'
         return ctx
 
