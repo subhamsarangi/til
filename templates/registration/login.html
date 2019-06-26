@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Sign in | {{block.super}} {% endblock %}
 {% block content %}
 <div id="auth_wrapper">
   <div id="auth_header" class='col-xs-12 col-md-6'>
@@ -16,5 +17,7 @@
     {{form.as_p}}
     <button type="Submit" class="btn btn-success">Login</button>
   </form>
+  <br>
+  <p>New user? <a href="/join">Create</a> an account for free.</p> 
 </div>
 {% endblock %}

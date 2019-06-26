@@ -159,12 +159,24 @@
         hyphens: auto;
         -ms-hyphens: auto;
         -moz-hyphens: auto;
-        background-image: linear-gradient(45deg, rgba(8, 3, 28, 0.769) 0%, rgba(3, 11, 22, 0.78) 100%), url(/media/bg.jpg);
+        transition: background-image 1s ease-in;
+    }
+    body:before{
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background-image: linear-gradient(45deg, rgba(3,28,25,0.769) 0%, rgba(8,28,59,0.78) 100%), url(/media/bg.jpg);
         background-position: 0% 0%, bottom;
         background-repeat: repeat, no-repeat;
         background-size: cover, cover;
         background-attachment: scroll;
         background-color: #FFFFFF;
+        transition: background-image 1s ease-in;
     }
     h1{
         font-family: 'Lemon', cursive;
@@ -205,6 +217,7 @@
         flex-flow: column;
         align-items: stretch;
         padding: 3px 0;
+        margin: 1.609em 0;
     }
     form a{
         color: #4abaff;
@@ -217,7 +230,8 @@
         letter-spacing: 1px;
     }
     .container{
-        background: #26252e;
+        background: #26252ec2;
+        z-index: 1;
         padding: 2em 2px;
         margin-top: 1em;
         margin-bottom: 15em;
@@ -258,6 +272,8 @@
 
     .generic_section{
         margin-bottom: 3.2em;
+        padding-right: 2em;
+        padding-left: 2em;
     }
     .generic_section .col-xs-12 a, .add_more{
         background: #15769f;
@@ -350,6 +366,7 @@
         padding-left: .5em;
         overflow: hidden;
         border:1px solid rgb(115, 216, 247);
+        border-radius: .5em;
     }
 
     .generic_card_text{
@@ -584,7 +601,7 @@
         width: 100%;
         height: 15em;
         z-index: 1;
-        margin-bottom: 5em;
+        margin-bottom: 1.75em;
     }
     #generic_profile_photo{
         position: absolute;
@@ -596,6 +613,7 @@
         border: 2px solid #9ff5f2;
         z-index: 2;
         overflow: hidden;
+        box-shadow: -1px 3px 10px 2px #000000b0;
     }
 
     #auth_wrapper{
@@ -659,6 +677,9 @@
         color:deepskyblue;
     }
     @media only screen and (max-width:420px){
+        body::before{
+            background-image: linear-gradient(45deg, rgba(8, 3, 28, 0.769) 0%, rgba(3, 11, 22, 0.78) 100%), url(/media/bg.jpg);
+        }
         .navbar-header:before{  
             position: absolute;
             top: 7%;
@@ -668,6 +689,17 @@
             font-size: 3em;
             color: #c5f9fd;
             font-family: 'Roboto Thin';
+        }
+        .navbar-header.remove_this:before{
+            content: none;
+        }
+        .container{
+            margin-left: .3em;
+            margin-right: .3em;
+        }
+        .generic_section{
+            padding-right: 5px;
+            padding-left: 5px;
         }
         .generic_section>h2:before{
             width: 20%;

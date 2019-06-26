@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block title %}Create an Account | {{block.super}} {% endblock %}
 {% block content %}
 <div id="auth_wrapper">
     <div id="auth_header" class='col-xs-12 col-md-6'>
@@ -16,6 +17,8 @@
     {{form.as_p}}
     <button type="Submit" class="btn btn-success">Sign Up</button>
   </form>
+  <br>
+  <p>By registering you are agreeing to our <a target='_blank' href="/terms">Terms & Conditions</a> and <a target='_blank' href="/privacy">Privacy Policy</a></p>
 </div>
 {% endblock %}
 {%block loadjs%}
