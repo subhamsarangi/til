@@ -19,11 +19,14 @@
 </div>
 {%include 'pagination2.html'%}
 
-{% for obj in object_list %}
-    {%include 'things/snippets/vehicles.html'%}
-{%empty%}
-    <p>Nothing here.</p>
-{%endfor%}
+<div id="vehicles_section">
+    {% for obj in object_list %}
+        {%include 'things/snippets/vehicles.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+</div>
+
 <p class="col-xs-12"><a href="{%url 'things:new_vehicle'%}" class="add_more"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a vehicle.</p>
 
 {%include 'pagination2.html'%}

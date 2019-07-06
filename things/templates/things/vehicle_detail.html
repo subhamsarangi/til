@@ -21,6 +21,22 @@
             <p class="generic_card_info1">{{object.company}}</p>
             <p>{%if object.is_private%}<span id="private">This is kept private</span>{%endif%}</p>
         </div>
+        <div id="generic_extra" class="col-xs-12">
+            {%if request.user == object.owner%}
+            <div id="generic_buttons">
+                <button class="generic_edit">
+                    <a href='{% url "things:edit_vehicle" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
+                </button>
+                <button class="generic_edit">
+                    <a href='{% url "things:del_vehicle" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
+                </button>
+            </div>
+            {%else%}
+            <div class="generic_creator">
+                <h4>Created by <a href="{%url 'things:user' object.owner%}">{{object.owner}}</a> at {{object.timestamp}}</h4>
+            </div>
+        {%endif%}
+        </div>
     </div>
 
     <div class="col-xs-12 col-md-7" id="generic_img">
@@ -28,18 +44,4 @@
         <p id='generic_img_link'><a href="{{object.image.url}}" target='_blank'>To view the full image, click here</a></p>
     </div>
 </div>
-{%if request.user == object.owner%}
-    <div id="generic_buttons">
-        <button class="generic_edit">
-            <a href='{% url "things:edit_vehicle" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
-        </button>
-        <button class="generic_edit">
-            <a href='{% url "things:del_vehicle" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
-        </button>
-    </div>
-    {%else%}
-    <div class="generic_creator">
-        <h4>Created by <a href="{%url 'things:user' object.owner%}">{{object.owner}}</a> at {{object.timestamp}}</h4>
-    </div>
-{%endif%}
 {%endblock content%}

@@ -17,11 +17,13 @@
 </div>
 {%include 'pagination1.html'%}
 
-{% for obj in object_list %}
-    {%include 'things/snippets/animes.html'%}
-{%empty%}
-    <p>Nothing here.</p>
-{%endfor%}
+<div id="animes_section">
+    {% for obj in object_list %}
+        {%include 'things/snippets/animes.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+</div>
 <p class="col-xs-12"><a href="{%url 'things:new_anime'%}" class="add_more"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an Anime</p>
 
 {%include 'pagination2.html'%}

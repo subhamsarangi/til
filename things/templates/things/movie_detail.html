@@ -13,7 +13,7 @@
 
 {%block content%}
 <div class="col-xs-12">
-    <div class="col-xs-12 col-md-5">
+    <div class="col-xs-12 col-md-3">
         {%if request.user == object.owner%}
         {%if object.rank%}
         <div id="generic_rank">
@@ -23,39 +23,40 @@
         {%endif%}
         <div id="generic_heading">{{object.name}}</div>
         <div id="generic_info">
-            <h3 class="generic_card_info1">{{object.year}}</h3>
+            <h4>{{object.year}}</h4>
             <br>
-            <p class="generic_card_info2"><span>{{object.get_watch_status_display}}</span></p>
             <p class="generic_card_info1">
             {%for g in object.genre.all%}
                 <span class="generic_genre">{{g.name}}</span>
             {%endfor%}
-            </p>
-            <p>{{object.remarks}}</p>
+            </p><br>
+            <p class="generic_card_info2"><span>{{object.get_watch_status_display}}</span></p>
+            {%if object.remarks%}
+            <h3><sup><i class="fa fa-quote-left" aria-hidden="true"></i></sup> {{object.remarks}} <sup><i class="fa fa-quote-right" aria-hidden="true"></i></sup></h3>
+            {%endif%}
             <p>{%if object.is_private%}<span id="private">This is kept private</span>{%endif%}</p>
         </div>
+        <div id="generic_extra" class="col-xs-12 ">
+            {%if request.user == object.owner%}
+            <div id="generic_buttons">
+                <button class="generic_edit">
+                    <a href='{% url "things:edit_movie" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
+                </button>
+                <button class="generic_edit">
+                    <a href='{% url "things:del_movie" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
+                </button>
+            </div>
+            {%else%}
+            <div class="generic_creator">
+                <h5>Created by <a href="{%url 'things:user' object.owner%}">{{object.owner}}</a> at <i class="fa fa-clock" aria-hidden="true"></i> {{object.timestamp}}</h5>
+            </div>
+            {%endif%}
+        </div>
     </div>
 
-    <div class="col-xs-12 col-md-7" id="generic_img">
+    <div class="col-xs-12 col-md-9" id="generic_img">
         <img src="{{object.poster}}" alt="{{object.name}}">
         <p id='generic_img_link'><a href="{{object.poster}}" target='_blank'><i class="fa fa-picture-o" aria-hidden="true"></i> To view the full image, click here</a></p>
-    </div>
-
-    <div id="generic_extra" class="col-xs-12 ">
-        {%if request.user == object.owner%}
-        <div id="generic_buttons">
-            <button class="generic_edit">
-                <a href='{% url "things:edit_movie" object.id object.slug %}'><i class="fa fa-edit" aria-hidden="true"></i> Edit this page</a>
-            </button>
-            <button class="generic_edit">
-                <a href='{% url "things:del_movie" object.id object.slug %}'><i class="fa fa-trash" aria-hidden="true"></i> Delete this page</a>
-            </button>
-        </div>
-        {%else%}
-        <div class="generic_creator">
-            <h5>Created by <a href="{%url 'things:user' object.owner%}">{{object.owner}}</a> at <i class="fa fa-clock" aria-hidden="true"></i> {{object.timestamp}}</h5>
-        </div>
-        {%endif%}
     </div>
 </div>
 

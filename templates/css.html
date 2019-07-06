@@ -42,10 +42,6 @@
     .icon-bar{
         background: #fff;
     }
-    .nav>li>a:focus, .nav>li>a:hover, nav .open>a{
-        text-decoration: none;
-        background: linear-gradient(to right,#827eda, #35338c);
-    }
     .navbar-nav>li>a{
         font-size: 1.4em;
     }
@@ -81,6 +77,40 @@
     }
     #logout a:hover{
         background: linear-gradient(to right,#973e5b, #754149)!important;
+    }
+    .nav>li>a{
+        transition: all .2s linear;
+        border: 1px solid transparent;
+        background: #0b0d18;
+        letter-spacing: 1px;
+    }
+    .nav>li>a:focus,.nav>li>a:active, .nav>li>a:hover, nav .open>a{
+        text-decoration: none;
+        background: linear-gradient(to right,#000000, #111111);
+    }
+    .nav.navbar-nav:hover #actors_dropdown>a{
+        color: #2fe;
+    }
+    .nav.navbar-nav:hover #musicians_dropdown>a{
+        color: #c9f;
+    }
+    .nav.navbar-nav:hover #movies_dropdown>a{
+        color: #fa9;
+    }
+    .nav.navbar-nav:hover #tvshows_dropdown>a{
+        color: #4cf;
+    }
+    .nav.navbar-nav:hover #animes_dropdown>a{
+        color: #7f7;
+    }
+    .nav.navbar-nav:hover #vehicles_dropdown>a{
+        color: #aae;
+    }
+    /* #fc90b8 golapi
+    #f8ac56 gerua
+    #fc3 agun*/
+    .dropdown:hover .dropdown a{
+        color: #fff;
     }
     #ui-datepicker-div{
         transform: scale(1.35);
@@ -306,10 +336,10 @@
         background: rgb(115, 216, 247);
     }
     #musicians_section>h2:before{
-        background: rgb(200, 156, 241);
+        background: #c9f;
     }
     #musicians_section .generic_card {
-        border:1px solid rgb(200, 156, 241);
+        border:1px solid #c9f;
     }
     #movies_section>h2:before{
         background: rgb(247, 115, 115);
@@ -324,16 +354,16 @@
         border:1px solid rgb(115, 124, 247);
     }
     #animes_section>h2:before{
-        background: rgb(153, 247, 115);
+        background: #7f7;
     }
     #animes_section .generic_card {
-        border:1px solid rgb(153, 247, 115);
+        border:1px solid #7f7;
     }
     #vehicles_section>h2:before{
-        background: rgb(166, 167, 168);
+        background: #aae;
     }
     #vehicles_section .generic_card {
-        border:1px solid rgb(166, 167, 168);
+        border:1px solid #aae;
     }
 
     #generic_filter_search{
@@ -386,6 +416,7 @@
         display: inline-block;
         padding: 1px 4px;
         border-radius: 5px;
+        padding: .3em!important;
     }
     .generic_card_info1{
         border: 1px solid #fff;
@@ -540,7 +571,8 @@
     #generic_extra {
         display: block;
         width: 100%;
-        padding: 1em;
+        margin-top: 3.5em;
+        padding: 0em;
     }
 
     .generic_edit{
