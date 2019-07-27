@@ -106,6 +106,12 @@
     .nav.navbar-nav:hover #vehicles_dropdown>a{
         color: #aae;
     }
+    .nav.navbar-nav:hover #books_dropdown>a{
+        color: rgb(247, 118, 118);
+    }
+    .nav.navbar-nav:hover #songs_dropdown>a{
+        color: rgb(152, 112, 248);
+    }
     /* #fc90b8 golapi
     #f8ac56 gerua
     #fc3 agun*/
@@ -365,6 +371,18 @@
     #vehicles_section .generic_card {
         border:1px solid #aae;
     }
+    #books_section>h2:before{
+        background: rgb(247, 118, 118);
+    }
+    #books_section .generic_card {
+        border:1px solid rgb(247, 118, 118);
+    }
+    #songs_section>h2:before{
+        background: rgb(152, 112, 248);
+    }
+    #songs_section .generic_card {
+        border:1px solid rgb(152, 112, 248);
+    }
 
     #generic_filter_search{
         height: auto;
@@ -585,6 +603,9 @@
     }
     #generic_buttons{
         margin-bottom: 4em;
+    }
+    #generic_buttons button {
+        margin-bottom: 1em;
     }
     .back_button, .delete_button{
         background: #15769f;

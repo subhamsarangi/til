@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+{%load static%}
+{% block title %}Books | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Books" />
+    <meta name="twitter:title" content="Books" />
+    <meta name="description" content="Book List"/>
+    <meta name="twitter:description" content="Book List" />
+    <meta property="og:description" content="Book List" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/books/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/books/" />
+{%endblock%}
+
+{%block content%}
+<div id="generic_list_heading" class="col-xs-12">
+	<h1>Book List</h1>
+</div>
+{%include 'pagination1.html'%}
+
+<div id="books_section">
+    {% for obj in object_list %}
+        {%include 'things/snippets/books.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+</div>
+
+<p class="col-xs-12"><a href="{%url 'things:new_book'%}" class="add_more"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a book.</p>
+
+{%include 'pagination2.html'%}
+
+{%endblock content%}

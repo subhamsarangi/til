@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+{%load static%}
+{% block title %}Songs | {{block.super}} {% endblock %}
+
+{%block metatag%}
+    <meta property="og:title" content="Songs" />
+    <meta name="twitter:title" content="Songs" />
+    <meta name="description" content="Song List"/>
+    <meta name="twitter:description" content="Song List" />
+    <meta property="og:description" content="Song List" />
+    <meta property="og:url" content="likelist.pythonanywhere.com/songs/" />
+    <meta name="twitter:domain" content="likelist.pythonanywhere.com/songs/" />
+{%endblock%}
+
+{%block content%}
+<div id="generic_list_heading" class="col-xs-12">
+	<h1>Song List</h1>
+</div>
+{%include 'pagination1.html'%}
+
+<div id="songs_section">
+    {% for obj in object_list %}
+        {%include 'things/snippets/songs.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+</div>
+
+<p class="col-xs-12"><a href="{%url 'things:new_song'%}" class="add_more"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a song.</p>
+
+{%include 'pagination2.html'%}
+
+{%endblock content%}

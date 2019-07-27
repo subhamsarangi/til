@@ -577,3 +577,146 @@ class AnimeListView(ListView):
             paginator = Paginator(queryset, self.paginate_by)
             page = self.request.GET.get('page')
             return paginator.page(paginator.num_pages)
+
+
+class SongCreateView(LoginRequiredMixin, CreateView):
+    form_class=SongCreateForm
+    template_name='things/form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(SongCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(SongCreateView, self).get_context_data(**kwargs)
+        ctx['formtitle'] = 'Add a Song you like'
+        ctx['formbutton'] = 'Create'
+        return ctx
+
+
+class SongUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=SongUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(SongUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().name
+        ctx['formtitle'] = 'Updating: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Song.objects.filter(owner=self.request.user)
+
+class SongDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('things:songs')
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(SongDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+
+    def get_queryset(self):
+        return Song.objects.filter(owner=self.request.user)
+
+class SongDetailView(DetailView):
+    def get_queryset(self):
+        return Song.objects.all()
+
+class SongListView(ListView):
+    paginate_by = 15
+    def get_queryset(self):
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = Song.objects.filter(
+                    Q(is_private=False) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug)).order_by('name')
+                )
+            else:
+                queryset = Song.objects.filter(is_private=False).order_by('name')
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)
+
+class BookCreateView(LoginRequiredMixin, CreateView):
+    form_class=BookCreateForm
+    template_name='things/form.html'
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super(BookCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(BookCreateView, self).get_context_data(**kwargs)
+        ctx['formtitle'] = 'Add a new Book'
+        ctx['formbutton'] = 'Create'
+        return ctx
+
+
+class BookUpdateView(LoginRequiredMixin, UpdateView):
+    form_class=BookUpdateForm
+    template_name='things/form.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(BookUpdateView, self).get_context_data(*args, **kwargs)
+        name = self.get_object().name
+        ctx['formtitle'] = 'Updating: {}'.format(name)
+        ctx['formbutton'] = 'Save Changes'
+        return ctx
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+        return Book.objects.filter(owner=self.request.user)
+
+class BookDeleteView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy('things:books')
+    def get_object(self, queryset=None):
+        """ Hook to ensure object is owned by request.user. """
+        obj = super(BookDeleteView, self).get_object()
+        if not obj.owner == self.request.user:
+            raise Http404
+        return obj
+
+    def get_queryset(self):
+        return Book.objects.filter(owner=self.request.user)
+
+class BookDetailView(DetailView):
+    def get_queryset(self):
+        return Book.objects.all()
+
+class BookListView(ListView):
+    paginate_by = 15
+    def get_queryset(self):
+        try:
+            slug = self.kwargs.get("slug")
+            if slug:
+                queryset = Book.objects.filter(
+                    Q(is_private=False) & 
+                    (Q(name=slug) |
+                    Q(name__icontains=slug)).order_by('name')
+                )
+            else:
+                queryset = Book.objects.filter(is_private=False).order_by('name')
+            return queryset
+        except PageNotAnInteger:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(1)
+        except EmptyPage:
+            paginator = Paginator(queryset, self.paginate_by)
+            page = self.request.GET.get('page')
+            return paginator.page(paginator.num_pages)

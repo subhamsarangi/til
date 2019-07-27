@@ -35,6 +35,21 @@
     </div>
 </div>
 
+<div class="col-xs-12 generic_section" id="books_section">
+    <h2><i class="fa fa-book" aria-hidden="true"></i> Books</h2>
+    {% for obj in book_list %}
+        {%include 'things/snippets/books.html'%}
+    {%endfor%}
+
+    {%if book_list.count == 5%}
+    <div class="col-xs-12 col-md-6">
+        <a href="{%url 'things:books'%}" class="generic_card_more">View all <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
+    {%else%}
+    <div class="col-xs-12">
+        <p class="col-xs-12"><a href="{%url 'things:new_book'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> new to fill this section up.</p>
+    {%endif%}
+    </div>
+</div>
 
 <div class="col-xs-12 generic_section" id="musicians_section">
     <h2><i class="fa fa-music" aria-hidden="true"></i> Musicians</h2>
@@ -49,6 +64,22 @@
     {%else%}
     <div class="col-xs-12">
         <p class="col-xs-12"><a href="{%url 'things:new_musician'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> new to fill this section up.</p>
+    {%endif%}
+    </div>
+</div>
+
+<div class="col-xs-12 generic_section" id="songs_section">
+    <h2><i class="fa fa-heartbeat" aria-hidden="true"></i> Songs</h2>
+    {% for obj in song_list %}
+        {%include 'things/snippets/songs.html'%}
+    {%endfor%}
+
+    {%if song_list.count == 5%}
+    <div class="col-xs-12 col-md-6">
+        <a href="{%url 'things:songs'%}" class="generic_card_more">View all <i class="fa fa-hand-o-right" aria-hidden="true"></i></a>
+    {%else%}
+    <div class="col-xs-12">
+        <p class="col-xs-12"><a href="{%url 'things:new_song'%}"><i class="fa fa-plus" aria-hidden="true"></i> Create</a> new to fill this section up.</p>
     {%endif%}
     </div>
 </div>

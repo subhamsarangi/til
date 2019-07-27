@@ -597,6 +597,7 @@ class Book(models.Model):
     )
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=50, blank=False, validators=[alphasymspace])
+    writers         =models.CharField(max_length=100, blank=False, null=True, validators=[alphasymspace])
     read_status     =models.CharField(choices=read_statuses, max_length=20, blank=False)
     source          =models.CharField(choices=sources, blank=False, max_length=40)
     cover           =models.URLField(max_length=200, blank=True, null=True)
@@ -625,7 +626,7 @@ class Book(models.Model):
 class Song(models.Model):
     owner           =models.ForeignKey(User)
     name            =models.CharField(max_length=80, blank=False, validators=[alphasymspace])
-    singer          =models.ForeignKey(Musician, on_delete=models.CASCADE, blank=False)
+    singer          =models.CharField(max_length=80, blank=False, validators=[alphasymspace])
     cover_url       =models.URLField(max_length=200, blank=True, null=True)
     remarks         =models.TextField(blank=True, null=True)
     rank            =models.CharField(choices=top_five, blank=True, null=True, max_length=12)

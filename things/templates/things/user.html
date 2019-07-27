@@ -44,11 +44,34 @@
     {%endfor%}
 </div>
 
+<div class="col-xs-12" id="books_section">
+    <h2><i class="fa fa-book" aria-hidden="true"></i> Books</h2>
+    {% for obj in uprofile.owner.book_set.all %}
+        {%if not obj.is_private%}
+        {%include 'things/snippets/books.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
+    {%endfor%}
+</div>
+ 
+
 <div class="col-xs-12" id="musicians_section">
     <h2><i class="fa fa-music" aria-hidden="true"></i> Musicians</h2>
     {% for obj in uprofile.owner.musician_set.all %}
         {%if not obj.is_private%}
         {%include 'things/snippets/musicians.html'%}
+        {%endif%}
+    {%empty%}
+        <p>Nothing here</p>
+    {%endfor%}
+</div>
+
+<div class="col-xs-12" id="songs_section">
+    <h2><i class="fa fa-heartbeat" aria-hidden="true"></i> Songs</h2>
+    {% for obj in uprofile.owner.song_set.all %}
+        {%if not obj.is_private%}
+        {%include 'things/snippets/songs.html'%}
         {%endif%}
     {%empty%}
         <p>Nothing here</p>

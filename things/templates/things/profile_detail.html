@@ -53,6 +53,16 @@
     <p class="col-xs-12"><a href="{%url 'things:new_actor'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an actor.</p>
 </div>
 
+<div class="col-xs-12 generic_section" id="books_section">
+    <h2><i class="fa fa-book" aria-hidden="true"></i> Books <span>{{object.owner.book_set.all.count}}</span></h2>
+    {% for obj in object.owner.book_set.all %}
+        {%include 'things/snippets/books.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+    <p class="col-xs-12"><a href="{%url 'things:new_book'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an actor.</p>
+</div>
+    
 <div class="col-xs-12 generic_section" id="musicians_section">
     <h2><i class="fa fa-music" aria-hidden="true"></i> Musicians <span>{{object.owner.musician_set.all.count}}</span></h2>
     {% for obj in object.owner.musician_set.all %}
@@ -63,7 +73,16 @@
     <p class="col-xs-12"><a href="{%url 'things:new_musician'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> a band or a solo artist.</p>
 </div>
 
-
+<div class="col-xs-12 generic_section" id="songs_section">
+    <h2><i class="fa fa-heartbeat" aria-hidden="true"></i> Songs <span>{{object.owner.song_set.all.count}}</span></h2>
+    {% for obj in object.owner.song_set.all %}
+        {%include 'things/snippets/songs.html'%}
+    {%empty%}
+        <p>Nothing here.</p>
+    {%endfor%}
+    <p class="col-xs-12"><a href="{%url 'things:new_song'%}"><i class="fa fa-plus" aria-hidden="true"></i> Add</a> an actor.</p>
+</div>
+   
 <div class="col-xs-12 generic_section" id="movies_section">
     <h2><i class="fa fa-film" aria-hidden="true"></i> Movies <span>{{object.owner.movie_set.all.count}}</span></h2>
     {% for obj in object.owner.movie_set.all %}

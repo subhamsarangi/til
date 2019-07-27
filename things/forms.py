@@ -114,9 +114,24 @@ class AnimeUpdateForm(forms.ModelForm):
         exclude = ['owner', 'slug', 'timestamp', 'updated','anime_type',]
 
 
-class DirectorCreateForm(forms.ModelForm):
+class BookCreateForm(forms.ModelForm):
     class Meta:
-        model = Director
+        model = Book
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+
+class BookUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+
+class SongCreateForm(forms.ModelForm):
+    class Meta:
+        model = Song
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+
+class SongUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Song
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
 class WriterCreateForm(forms.ModelForm):
@@ -124,16 +139,25 @@ class WriterCreateForm(forms.ModelForm):
         model = Writer
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class ArtistCreateForm(forms.ModelForm):
+class DirectorCreateForm(forms.ModelForm):
     class Meta:
-        model = Artist
+        model = Director
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+
+class PlaceCreateForm(forms.ModelForm):
+    class Meta:
+        model = Place
+        exclude = ['owner', 'slug', 'timestamp', 'updated',]
+
+class FoodCreateForm(forms.ModelForm):
+    class Meta:
+        model = Food
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
 class DancerCreateForm(forms.ModelForm):
     class Meta:
         model = Dancer
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
-
 
 class SportsPersonCreateForm(forms.ModelForm):
     class Meta:
@@ -155,15 +179,9 @@ class AdultCreateForm(forms.ModelForm):
         model = AdultModel
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-
-class BookCreateForm(forms.ModelForm):
+class ArtistCreateForm(forms.ModelForm):
     class Meta:
-        model = Book
-        exclude = ['owner', 'slug', 'timestamp', 'updated',]
-
-class SongCreateForm(forms.ModelForm):
-    class Meta:
-        model = Song
+        model = Artist
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
 class YoutubeChannelCreateForm(forms.ModelForm):
@@ -181,12 +199,3 @@ class WebsiteCreateForm(forms.ModelForm):
         model = Website
         exclude = ['owner', 'slug', 'timestamp', 'updated',]
 
-class PlaceCreateForm(forms.ModelForm):
-    class Meta:
-        model = Place
-        exclude = ['owner', 'slug', 'timestamp', 'updated',]
-
-class FoodCreateForm(forms.ModelForm):
-    class Meta:
-        model = Food
-        exclude = ['owner', 'slug', 'timestamp', 'updated',]

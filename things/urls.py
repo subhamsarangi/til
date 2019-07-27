@@ -51,4 +51,16 @@ urlpatterns = [
     url(r'^anime/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.AnimeUpdateView.as_view(), name='edit_anime'),
     url(r'^anime/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.AnimeDeleteView.as_view(),name='del_anime'),
     url(r'^anime/(?P<slug>[\w-]+)/$', views.AnimeDetailView.as_view(), name='anime'),
+
+    url(r'^songs/$', views.SongListView.as_view(), name='songs'),
+    url(r'^add-song/$', views.SongCreateView.as_view(),name='new_song'),
+    url(r'^song/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.SongUpdateView.as_view(), name='edit_song'),
+    url(r'^song/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.SongDeleteView.as_view(),name='del_song'),
+    url(r'^song/(?P<slug>[\w-]+)/$', views.SongDetailView.as_view(), name='song'),
+
+    url(r'^books/$', views.BookListView.as_view(), name='books'),
+    url(r'^add-book/$', views.BookCreateView.as_view(),name='new_book'),
+    url(r'^book/(?P<pk>\d+)/(?P<slug>[\w-]+)/edit$', views.BookUpdateView.as_view(), name='edit_book'),
+    url(r'^book/(?P<pk>\d+)/(?P<slug>[\w-]+)/delete/$', views.BookDeleteView.as_view(),name='del_book'),
+    url(r'^book/(?P<slug>[\w-]+)/$', views.BookDetailView.as_view(), name='book'),
 ]
