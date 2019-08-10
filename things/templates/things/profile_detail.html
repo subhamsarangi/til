@@ -29,6 +29,10 @@
     <p>Joined: {{object.timestamp|date:"d M Y"}}</p>
 </div>
 
+<div class="col-xs-12">
+    <a target="_blank"  id="link_to_maps" href="https://www.google.com/maps/place/{{object.location}}">Open Maps</a>
+</div>
+
 {%if request.user == object.owner%}
 <br>
 <div id="generic_buttons" class="col-xs-12">

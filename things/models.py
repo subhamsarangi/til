@@ -18,6 +18,7 @@ class Profile(models.Model):
     first_name      =models.CharField(max_length=50, blank=True, null=True,validators=[alphanumspacedash])
     last_name       =models.CharField(max_length=50, blank=True, null=True, validators=[alphanumspacedash])
     dob             =models.DateField(blank=True, null=True)
+    location        =models.CharField(null=True, blank=True, max_length = 50)
     slug            =models.SlugField(blank=True, null=True)
     timestamp       =models.DateTimeField(auto_now_add=True)
     updated         =models.DateTimeField(auto_now=True)

@@ -49,4 +49,40 @@ if(document.URL.split('/')[3]=='login' || document.URL.split('/')[3]=='join'){
     $('.navbar-header').addClass('remove_this');
     $('.container').css('background', 'transparent');
 }
+
+// get the location button
+$('#id_location').attr('readonly', true);
+$('#id_location').after('<button type="button" id="get_location">Your Location</button>');
+$('#get_location').click(function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+});
+
+function showPosition(position) {
+  var pos = position.coords.latitude + 
+  " " + position.coords.longitude;
+  $('#id_location').val(pos);
+  var html = '<a id="open_maps" target="_blank" href="https://www.google.com/maps/place/' + pos + '">Open Maps</a>';
+  $('#get_location').after(html);
+}
+
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "An unknown error occurred."
+      break;
+  }
+}
 </script>
